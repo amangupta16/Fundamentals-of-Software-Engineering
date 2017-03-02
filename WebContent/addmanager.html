@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>WELCOME - FLY ROYAL AIRLINES</title>
+    <title>Register - FLY ROYAL AIRLINES</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
   </head>
@@ -37,21 +37,9 @@
     <section class="row-alt">
       <div class="lead container">
 
-        <h1>Welcome</h1>
+        <h1>Register</h1>
 
-        <p>You can buy a person's time; you can buy their physical presence at a given place; you can even buy a measured number of their skilled muscular motions per hour. But you can not buy enthusiasm . . . You can not buy loyalty . . . You can not buy the devotion of hearts, minds, or souls. You must earn these.</p>
-
-      </div>
-    </section>
-
-    <!-- Main content -->
-
-    <section class="row-alt">
-      <div class="lead container">
-
-        <h2>Travel History</h2>
-
-        <p>Traveling with friends or family? If you book all the travel in your account, you can get all the points. And, everyone still earns their airlines' frequent flyer miles. There are no restrictions on how many people you can book travel for, so get the gang together and plan a trip.</p>
+        <p>Every year we aim to have an unbelievable time, and this year we&#8217;d love it for you to join us. Domestic flights starting from $99, one of the best values you&#8217;ll find.</p>
 
       </div>
     </section>
@@ -81,15 +69,61 @@
 
         </section><!--
 
+        Registration form
+
+        --><form class="col-1-3" action="addmanager.jsp" method="post">
+
+          <fieldset class="register-group">
+
+            <label>
+              Manager First Name
+              <input type="text" name="fname" placeholder="Manager First name" required>
+            </label>
+            
+            <label>
+              Manager Last Name
+              <input type="text" name="lname" placeholder="Manager Last name" required>
+            </label>
+
+            <label>
+              Manager Email
+              <input type="email" name="email" placeholder="Manager Email address" required>
+            </label>
+            
+            <label>
+              Manager Username
+              <input type="text" name="uname" placeholder="Manager Username" required>
+            </label>
+            
+            <label>
+              Manager Password
+              <input type="password" name="pass" placeholder="Manager Password" required>
+            </label>
+
+           
+
+          </fieldset>
+
+          <input class="btn btn-default" type="submit" name="submit" value="Add Manager">
+
+        </form>
+
+      </div>
+    </section>
+
     <!-- Footer -->
 
     <footer class="primary-footer container group">
 
-      <small>&copy; Styles Conference</small>
+      <small>&copy; FLY ROYAL AIRLINES</small>
 
       <nav class="nav">
         <ul>
-          <li><a href='logout.jsp'>Log out</a></li>
+          <li><a href="index.html">Home</a></li><!--
+          --><li><a href="speakers.html">Speakers</a></li><!--
+          --><li><a href="schedule.html">Schedule</a></li><!--
+          --><li><a href="venue.html">Venue</a></li><!--
+          --><li><a href="register.html">Register</a></li>
         </ul>
       </nav>
 

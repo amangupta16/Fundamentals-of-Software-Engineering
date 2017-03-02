@@ -27,8 +27,8 @@
     //ResultSet rs;
     int i = st.executeUpdate("insert into members(first_name, last_name, email, uname, pass, regdate) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE())");
     if (i > 0) {
-        //session.setAttribute("userid", user);
-        response.sendRedirect("login.html");
+        
+        response.sendRedirect("welcome.html");
        // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
         Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -38,7 +38,7 @@
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
 
-		Session session1 = Session.getDefaultInstance(props,
+		Session session1 = Session.getInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication("flyroyalairlines","fundamentals");
