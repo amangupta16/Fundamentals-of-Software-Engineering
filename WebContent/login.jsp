@@ -9,10 +9,17 @@
     ResultSet rs;
     rs = st.executeQuery("select * from members where uname='" + userid + "' and pass='" + pwd + "'");
     if (rs.next()) {
-        session.setAttribute("userid", userid);
-        //out.println("welcome " + userid);
-        //out.println("<a href='logout.jsp'>Log out</a>");
-        response.sendRedirect("welcome.html");
+    	String access = rs.getString("accType");
+    	session.setAttribute("userid", userid);
+    	//out.println("welcome " + userid);
+    	//out.println("<a href='logout.jsp'>Log out</a>");
+    	if(access.equals("U")){
+        	response.sendRedirect("welcome.html");
+    	} else if (access.equals("M")){
+    		response.sendRedirect("managerWelcome.html");
+    	} else if (access.equals("A")){
+    		response.sendRedirect("adminWelcome.html");
+    	}
     } else {
         out.println("Invalid password <a href='login.html'>try again</a>");
     }

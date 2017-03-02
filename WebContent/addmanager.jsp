@@ -25,7 +25,7 @@
             "root", "root");
     Statement st = con.createStatement();
     //ResultSet rs;
-    int i = st.executeUpdate("insert into members(first_name, last_name, email, uname, pass, regdate) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE())");
+    int i = st.executeUpdate("insert into members(first_name, last_name, email, uname, pass, regdate, accType) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'M')");
     if (i > 0) {
         
         response.sendRedirect("welcome.html");
@@ -64,6 +64,6 @@
 		}
         
     } else {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("adminWelcome.jsp");
     }
 %>
