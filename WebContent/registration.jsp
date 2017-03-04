@@ -68,6 +68,6 @@
 	        response.sendRedirect("index.jsp");
 	    }
     } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
-    	out.println("This username or password is already taken <a href='register.html'>try again</a>");
+    	out.println("This username, email, or password is already taken <a href='register.html'>try again</a>");
     }
 %>
