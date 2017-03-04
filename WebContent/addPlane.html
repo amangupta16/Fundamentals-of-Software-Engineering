@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Add Manager - FLY ROYAL AIRLINES</title>
+    <title>Add Plane - FLY ROYAL AIRLINES</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
     <style>		
@@ -114,7 +114,7 @@
     <section class="row-alt">
       <div class="lead container">
 
-        <h1>Add Manager</h1>
+        <h1>Add Plane</h1>
 
       </div>
     </section>
@@ -126,47 +126,52 @@
 
         <!-- Details -->
 
-        <section class="col-2-3">
+		<!--
+		 Registration form
 
-
-        </section><!--
-
-        Registration form
-
-        --><form class="col-1-3" action="addmanager.jsp" method="post">
+        --><form class="col-1-3"> <!--action="addPlane.jsp" method="post"-->
 
           <fieldset class="register-group">
 
             <label>
-              Manager First Name
-              <input type="text" name="fname" placeholder="Manager First name" required>
+              Manufacturer
+              <input type="text" name="manfac" placeholder="Manufacturer" required>
             </label>
             
             <label>
-              Manager Last Name
-              <input type="text" name="lname" placeholder="Manager Last name" required>
+              Model number
+              <input type="text" name="model" placeholder="Model" required>
             </label>
 
             <label>
-              Manager Email
-              <input type="email" name="email" placeholder="Manager Email address" required>
+              Number of this type of plane being added
+              <input type="text" name="number" placeholder="0" required>
             </label>
             
             <label>
-              Manager Username
-              <input type="text" name="uname" placeholder="Manager Username" required>
+              Number of first class seats
+              <input type="text" name="fclass" placeholder="0" required>
             </label>
             
             <label>
-              Manager Password
-              <input type="password" name="pass" placeholder="Manager Password" required>
+              Number of business class seats
+              <input type="text" name="bclass" placeholder="0" required>
             </label>
-
-           
-
+            
+            <label>
+              Number of economy class seats
+              <input type="text" name="eclass" placeholder="0" required>
+            </label>
+            
+            <label>
+              Number of premium economy class seats
+              <input type="text" name="peclass" placeholder="0" required>
+            </label>
+            
+            
           </fieldset>
 
-          <input class="btn btn-default" type="submit" name="submit" value="Add Manager">
+          <input class="btn btn-default" type="submit" name="submit" value="Add Plane">
 
         </form>
 

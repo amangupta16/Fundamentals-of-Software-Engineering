@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Add Manager - FLY ROYAL AIRLINES</title>
+    <title>Settings - FLY ROYAL AIRLINES</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
     <style>		
@@ -114,7 +114,7 @@
     <section class="row-alt">
       <div class="lead container">
 
-        <h1>Add Manager</h1>
+        <h1>Settings</h1>
 
       </div>
     </section>
@@ -126,47 +126,32 @@
 
         <!-- Details -->
 
-        <section class="col-2-3">
+		<!--
+		 Registration form
 
-
-        </section><!--
-
-        Registration form
-
-        --><form class="col-1-3" action="addmanager.jsp" method="post">
+        --><form class="col-1-3" action="adminSettings.jsp" method="post">
 
           <fieldset class="register-group">
 
             <label>
-              Manager First Name
-              <input type="text" name="fname" placeholder="Manager First name" required>
+              Old Password
+              <input type="password" name="oldpass" placeholder="Old Password" required>
             </label>
             
             <label>
-              Manager Last Name
-              <input type="text" name="lname" placeholder="Manager Last name" required>
+              New Password
+              <input type="password" name="newpass" placeholder="New Password" required>
             </label>
 
             <label>
-              Manager Email
-              <input type="email" name="email" placeholder="Manager Email address" required>
+              Confirm New Password
+              <input type="password" name="cnewpass" placeholder="Confirm" required>
             </label>
             
-            <label>
-              Manager Username
-              <input type="text" name="uname" placeholder="Manager Username" required>
-            </label>
             
-            <label>
-              Manager Password
-              <input type="password" name="pass" placeholder="Manager Password" required>
-            </label>
-
-           
-
           </fieldset>
 
-          <input class="btn btn-default" type="submit" name="submit" value="Add Manager">
+          <input class="btn btn-default" type="submit" name="submit" value="Change Password">
 
         </form>
 
