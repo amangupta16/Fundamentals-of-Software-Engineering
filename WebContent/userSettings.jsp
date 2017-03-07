@@ -26,7 +26,7 @@
     //ResultSet rs;
     ResultSet rs;
     if(npass.equals(cnpass)){
-	    rs = st.executeQuery("select * from members where uname='" + userid + "' and pass='" + opass + "'");
+	    rs = st.executeQuery("select * from memberss where uname='" + userid + "' and pass='" + opass + "'");
 	    if(rs.next()){
 	    	PreparedStatement preparedStmt = con.prepareStatement("update members set pass = ? where uname = ?");
 	        preparedStmt.setString(1,npass);

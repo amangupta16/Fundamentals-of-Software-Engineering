@@ -25,10 +25,10 @@
             "root", "root");
     Statement st = con.createStatement();
     //ResultSet rs;
-    int i = st.executeUpdate("insert into members(first_name, last_name, email, uname, pass, regdate, accType) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'M')");
+    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'M', 'YES')");
     if (i > 0) {
         
-        response.sendRedirect("welcome.html");
+        response.sendRedirect("adminWelcome.html");
        // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
         Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -51,9 +51,13 @@
 			message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(email));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler," +
-					"\n\n No spam to my email, please!");
+			message.setSubject("Hurray!! You have been added as a manager at Fly Royal Airlines");
+			message.setText("Dear " + fname +
+					"\n\n You have been added as a manager at Fly Royal Airlines." +
+					"\n Your username is: " + user + " and password is: " + pwd +
+					"\n You are recommended to change the password when logging in first time. Go to settings and change password." +
+					"\n\n Warm Regards," +
+					"\n Fly Royal Airlines");
 
 			Transport.send(message);
 

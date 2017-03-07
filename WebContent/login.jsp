@@ -7,16 +7,20 @@
             "root", "root");
     Statement st = con.createStatement();
     ResultSet rs;
-    rs = st.executeQuery("select * from members where uname='" + userid + "' and pass='" + pwd + "'");
+    rs = st.executeQuery("select * from memberss where uname='" + userid + "' and pass='" + pwd + "'");
     if (rs.next()) {
     	String access = rs.getString("accType");
+    	String firsttime = rs.getString("ftlogin");
     	session.setAttribute("userid", userid);
     	//out.println("welcome " + userid);
     	//out.println("<a href='logout.jsp'>Log out</a>");
     	if(access.equals("U")){
         	response.sendRedirect("welcome.html");
     	} else if (access.equals("M")){
-    		response.sendRedirect("managerWelcome.html");
+    		if (firsttime.equals("YES"))
+    			response.sendRedirect("managerSettings.html");
+    		else
+    			response.sendRedirect("managerWelcome.html");
     	} else if (access.equals("A")){
     		response.sendRedirect("adminWelcome.html");
     	}
