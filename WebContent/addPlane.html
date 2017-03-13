@@ -92,14 +92,14 @@
   				<li class="flightbtn">Flights</li>
  				<div class="flight-content">
     				<a href="addFlight.html">Add Flight</a>
-    				<a href="removeFlight.html">Remove Flight</a>
+    				<a href="removeFlight.html">Remove/Update Flight</a>
   				</div>
 			</div><!--
           --><div class="plane">
   				<li class="planebtn">Planes</li>
  				<div class="plane-content">
     				<a href="addPlane.html">Add Plane</a>
-    				<a href="removePlane.html">Remove Plane</a>
+    				<a href="removePlane.html">Remove/Update Plane</a>
   				</div>
 			</div><!--
 		  --><li><a href="adminSettings.html">Settings</a></li><!--
@@ -129,7 +129,7 @@
 		<!--
 		 Registration form
 
-        --><form class="col-1-3"> <!--action="addPlane.jsp" method="post"-->
+        --><form class="col-1-3" action="addPlane.jsp" method="post"> <!--action="addPlane.jsp" method="post"-->
 
           <fieldset class="register-group">
 
@@ -139,13 +139,8 @@
             </label>
             
             <label>
-              Model number
+              Plane Model
               <input type="text" name="model" placeholder="Model" required>
-            </label>
-
-            <label>
-              Number of this type of plane being added
-              <input type="text" name="number" placeholder="0" required>
             </label>
             
             <label>
@@ -161,11 +156,6 @@
             <label>
               Number of economy class seats
               <input type="text" name="eclass" placeholder="0" required>
-            </label>
-            
-            <label>
-              Number of premium economy class seats
-              <input type="text" name="peclass" placeholder="0" required>
             </label>
             
             

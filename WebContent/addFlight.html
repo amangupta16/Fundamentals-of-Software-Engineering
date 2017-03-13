@@ -92,14 +92,14 @@
   				<li class="flightbtn">Flights</li>
  				<div class="flight-content">
     				<a href="addFlight.html">Add Flight</a>
-    				<a href="removeFlight.html">Remove Flight</a>
+    				<a href="removeFlight.html">Remove/Update Flight</a>
   				</div>
 			</div><!--
           --><div class="plane">
   				<li class="planebtn">Planes</li>
  				<div class="plane-content">
     				<a href="addPlane.html">Add Plane</a>
-    				<a href="removePlane.html">Remove Plane</a>
+    				<a href="removePlane.html">Remove/Update Plane</a>
   				</div>
 			</div><!--
 		  --><li><a href="adminSettings.html">Settings</a></li><!--
@@ -126,36 +126,53 @@
 
         <!-- Details -->
 
-		<!--
-		 Registration form
-
-        --><form class="col-1-3"> <!--action="addFlight.jsp" method="post"-->
+        <form class="col-1-3" action="addFlight.jsp" method="post"> 
 
           <fieldset class="register-group">
-
+            
             <label>
-              Destination ID
-              <input type="text" name="destID" placeholder="Destination" required>
+              Flight ID
+              <input type="number" name="flightID" placeholder="Flight number" required>
             </label>
             
             <label>
-              Launch ID
+              Plane ID
+              <input type="number" name="model" placeholder="Plane number" required>
+            </label>
+            
+            <label>
+              From
               <input type="text" name="launchID" placeholder="Launch" required>
+            </label>
+            
+            <label>
+              To
+              <input type="text" name="destID" placeholder="Destination" required>
             </label>
 
             <label>
               Departure Time
-              <input type="time" name="depart" required>
+              <input type="datetime-local" name="depart" required>
             </label>
             
             <label>
               Arrival Time
-              <input type="time" name="arrive" required>
+              <input type="datetime-local" name="arrive" required>
             </label>
             
             <label>
-              Frequency
-              <input type="text" name="freq" placeholder="Weekly" required>
+              First Class Price
+              <input type="text" name="FCP" required>
+            </label>
+            
+            <label>
+              Business Class Price
+              <input type="text" name="BCP" required>
+            </label>
+            
+            <label>
+              Economy Class Price
+              <input type="text" name="ECP" required>
             </label>
             
           </fieldset>
