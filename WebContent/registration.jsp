@@ -26,7 +26,7 @@
     Statement st = con.createStatement();
     //ResultSet rs;
     try{
-	    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'A', 'NO')");
+	    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'U', 'NO')");
 	    if (i > 0) {
 	        //session.setAttribute("userid", user);
 	        response.sendRedirect("login.html");
