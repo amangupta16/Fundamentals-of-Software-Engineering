@@ -69,12 +69,117 @@
 			<form class="col-1-3" action="searchFlights.jsp" method="post">
 
 				<fieldset class="register-group">
-
-					<label> From <input type="location" name="from"
-						placeholder="From" required>
-					</label> <label> Destination <input type="location"
-						name="destination" placeholder="Destination" required>
-					</label> <label> Departure Date <input type="date"
+					<label>From
+					<select name="from" required>				
+					<option value="ABQ">ABQ</option>
+					<option value="ACY">ACY</option>
+					<option value="ANC">ANC</option>
+					<option value="ATL">ATL</option>
+					<option value="AUS">AUS</option>			
+					<option value="BDL">BDL</option>
+				    <option value="BHM">BHM</option>
+				    <option value="BIL">BIL</option>
+				    <option value="BOI">BOI</option>
+				    <option value="BOS">BOS</option>
+				    <option value="BWI">BWI</option>		    
+				    <option value="CHS">CHS</option>
+				    <option value="CID">CID</option>
+				    <option value="CLE">CLE</option>
+				    <option value="CLT">CLT</option>
+				    <option value="CPR">CPR</option>
+				    <option value="CRW">CRW</option>				    
+				    <option value="DCA">DCA</option>
+				    <option value="DEN">DEN</option>
+				    <option value="DTW">DTW</option>			    
+				    <option value="FAR">FAR</option>
+				    <option value="FLG">FLG</option>
+				    <option value="FLL">FLL</option>
+				    <option value="GPT">GPT</option>
+				    <option value="HNL">HNL</option>
+				    <option value="IAD">IAD</option>
+				    <option value="ICT">ICT</option>
+				    <option value="IND">IND</option>
+				    <option value="JFK">JFK</option>
+				    <option value="LAS">LAS</option>
+				    <option value="LAX">LAX</option>
+				    <option value="LEX">LEX</option>
+				    <option value="LIT">LIT</option>
+				    <option value="MEM">MEM</option>
+	    			<option value="MHT">MHT</option>
+				    <option value="MSN">MSN</option>
+				    <option value="MSP">MSP</option>
+				    <option value="MSY">MSY</option>
+				  	<option value="OKC">OKC</option>
+				  	<option value="OMA">OMA</option>
+				    <option value="ORD">ORD</option>
+	    			<option value="PDX">PDX</option>
+				    <option value="PHL">PHL</option>			    			    
+				    <option value="PIR">PIR</option>
+				    <option value="PVD">PVD</option>
+				    <option value="PWM">PWM</option>	    
+				    <option value="SEA">SEA</option>
+				    <option value="SLC">SLC</option>			    
+				    <option value="STL">STL</option>			        
+				    <option value="RUT">RUT</option>		    
+				    </select>
+				    </label>
+				    
+					<label> To
+					<select name="destination" required>				
+					<option value="ABQ">ABQ</option>
+					<option value="ACY">ACY</option>
+					<option value="ANC">ANC</option>
+					<option value="ATL">ATL</option>
+					<option value="AUS">AUS</option>			
+					<option value="BDL">BDL</option>
+				    <option value="BHM">BHM</option>
+				    <option value="BIL">BIL</option>
+				    <option value="BOI">BOI</option>
+				    <option value="BOS">BOS</option>
+				    <option value="BWI">BWI</option>		    
+				    <option value="CHS">CHS</option>
+				    <option value="CID">CID</option>
+				    <option value="CLE">CLE</option>
+				    <option value="CLT">CLT</option>
+				    <option value="CPR">CPR</option>
+				    <option value="CRW">CRW</option>				    
+				    <option value="DCA">DCA</option>
+				    <option value="DEN">DEN</option>
+				    <option value="DTW">DTW</option>			    
+				    <option value="FAR">FAR</option>
+				    <option value="FLG">FLG</option>
+				    <option value="FLL">FLL</option>
+				    <option value="GPT">GPT</option>
+				    <option value="HNL">HNL</option>
+				    <option value="IAD">IAD</option>
+				    <option value="ICT">ICT</option>
+				    <option value="IND">IND</option>
+				    <option value="JFK">JFK</option>
+				    <option value="LAS">LAS</option>
+				    <option value="LAX">LAX</option>
+				    <option value="LEX">LEX</option>
+				    <option value="LIT">LIT</option>
+				    <option value="MEM">MEM</option>
+	    			<option value="MHT">MHT</option>
+				    <option value="MSN">MSN</option>
+				    <option value="MSP">MSP</option>
+				    <option value="MSY">MSY</option>
+				  	<option value="OKC">OKC</option>
+				  	<option value="OMA">OMA</option>
+				    <option value="ORD">ORD</option>
+	    			<option value="PDX">PDX</option>
+				    <option value="PHL">PHL</option>			    			    
+				    <option value="PIR">PIR</option>
+				    <option value="PVD">PVD</option>
+				    <option value="PWM">PWM</option>	    
+				    <option value="SEA">SEA</option>
+				    <option value="SLC">SLC</option>			    
+				    <option value="STL">STL</option>			        
+				    <option value="RUT">RUT</option>		    
+				    </select>
+				    </label>
+					 
+					<label> Departure Date <input type="date"
 						name="departureDate" placeholder="yyyy-mm-dd" required>
 					</label> <label> Return Date (Leave Blank if one way) <input
 						type="date" name="returnDate" placeholder="yyyy-mm-dd">

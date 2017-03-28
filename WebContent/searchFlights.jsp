@@ -30,12 +30,14 @@
 	<style>
 table {
 	border-collapse: collapse;
+	border-spacing: 2px;
 	width: 100%;
 }
 
 th, td {
+	font-size: 90%;
 	text-align: center;
-	padding: 8px;
+	padding: 6px;
 }
 </style>
 
@@ -145,32 +147,23 @@ th, td {
 						flightsFound = true;
 
 					}
-							/*out.println(temp);
-							out.println(rs.getInt("FlightID"));
-							out.println(rs.getString("launch"));
-							out.println(rs.getString("destination"));
-							out.println(rs.getDate("departure"));
-							out.println(rs.getTime("arrive"));
-							out.println("Economy: $"+ rs.getInt("economyPrice"));
-							out.println("Business: $"+ rs.getInt("businessClassPrice"));
-							out.println("First-Class: $"+ rs.getInt("firstClassPrice"));*/
-							//out.println("\n_____________\n");	
-						}
+
+				}
 			%>
 			
 			</table>
 			
 			<h1>
 
-				<%
-					if (flightsFound == false) 
-					{
-						out.println("No flights were found <a href='searchFlights.html'>TRY AGAIN</a>");
-					}
-					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
-						out.println("This username, email, or password is already taken <a href='register.html'>TRY AGAIN</a>");
-					}
-				%>
+			<%
+				if (flightsFound == false) 
+				{
+					out.println("No flights were found: <a href='searchFlights.html'>TRY AGAIN</a>");
+				}
+				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+					out.println("This username, email, or password is already taken <a href='register.html'>TRY AGAIN</a>");
+				}
+			%>
 				<!-- Lead -->
 			</h1>
 
