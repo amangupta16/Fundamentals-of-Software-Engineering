@@ -89,6 +89,7 @@ th, td {
 			String password = "root";
 			Connection con = DriverManager.getConnection(url, username, password);
 			String query = "select * from flight";
+			boolean user;
 
 			Statement st = con.createStatement();
 
@@ -96,6 +97,12 @@ th, td {
 			{
 				ResultSet rs;
 				rs = st.executeQuery(query);
+				
+				if (session == null || session.getAttribute("userid") == null) {
+				    user = false;
+				} else {
+				    user = true;
+				}
 				
 				while (rs.next()) 
 				{
@@ -135,12 +142,51 @@ th, td {
 							<td><%=rs.getTime("departure")%></td>
 							<td><%=rs.getDate("arrive")%></td>
 							<td><%=rs.getTime("arrive")%></td>
-							<td><input class="btn btn-default" type="submit" name="submit"
-								value="<%="$" + rs.getInt("economyPrice")%>"></td>
-							<td><input class="btn btn-default" type="submit" name="submit"
-								value="<%="$" + rs.getInt("businessClassPrice")%>"></td>
-							<td><input class="btn btn-default" type="submit" name="submit"
-								value="<%="$" + rs.getInt("firstClassPrice")%>"></td>
+							<%if(user==true){ %>
+								<td><form action="booking.jsp">
+									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="seatType" value="economy">
+									<input class="btn btn-default" type="submit" name="ticketprice"
+									value="<%="$" + rs.getInt("economyPrice")%>">
+									</form></td>
+								<td><form action="booking.jsp">
+									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="seatType" value="business">
+									<input class="btn btn-default" type="submit" name="ticketprice"
+									value="<%="$" + rs.getInt("businessClassPrice")%>">
+									</form></td>
+								<td><form action="booking.jsp">
+									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="seatType" value="first">
+									<input class="btn btn-default" type="submit" name="ticketprice"
+									value="<%="$" + rs.getInt("firstClassPrice")%>">
+									</form></td>
+							<% } else { %>
+								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+									value="<%="$" + rs.getInt("economyPrice")%>"></form></td>
+								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+									value="<%="$" + rs.getInt("businessClassPrice")%>"></form></td>
+								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+									value="<%="$" + rs.getInt("firstClassPrice")%>"></form></td>
+							<%} %>
 						</tr>
 
 			<%
