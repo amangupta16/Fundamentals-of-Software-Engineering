@@ -26,7 +26,7 @@
 	int n=0;
 	int j;
 	int age[]=new int[num];
-	int cost1 = Integer.parseInt(request.getParameter("ticketprice"));
+	String cost1 = request.getParameter("ticketprice");
 	String flightid = request.getParameter("flightID");
 	String launch = request.getParameter("launch");
 	String destination = request.getParameter("destination");
@@ -38,7 +38,6 @@
 	String user = session.getAttribute("userid").toString();
 	String names[] = new String[num];
 	String gender[] = new String[num];
-	int price = num * cost1;
 	boolean check=false;
 	
     for(j=0; j<num; j++){
@@ -110,7 +109,8 @@
 				"\n\t\t\t\t To:  "+destination+
 				"\n\t\t\t\t Depart Time:  "+departTime+
 				"\n\t\t\t\t Arrival Time:  "+arriveTime+
-				"\n\n\n Total Tickets Price:  "+price));
+				"\n\n\n Total number of tickets:  "+num+
+				"\n Price per ticket:  "+cost1));
 		
 		
 
@@ -149,9 +149,9 @@
 		message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 		message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(email));
-		message.setSubject("Hurray!! You have been added as a manager at Fly Royal Airlines");
+		message.setSubject("Congrats!! Your tickets have been booked successfully");
 		 messageBodyPart = new MimeBodyPart();
-		 messageBodyPart.setText("Dear Customer," +
+		 message.setText("Dear Customer," +
 					"\n\n You ticket has been booked." +
 					"\n Please find attached the pdf." +
 					"\n\n Warm Regards," +
