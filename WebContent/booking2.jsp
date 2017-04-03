@@ -84,7 +84,7 @@
         int remaining=numseats-seatsTaken;
         remaining=remaining-num;
         
-        if(remaining>0){
+        if(remaining>=0){
 	        char cost2[] = cost1.toCharArray();
 	        String cost3 = "";
 	        for(int j=1; j<cost2.length; j++){
