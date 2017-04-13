@@ -150,20 +150,15 @@ th, td {
 						if (user == true) {
 					%>
 					<td><form action="<%=choice%>">
-							<input type="hidden" name="flightID"
-								value="<%=rs.getInt("FlightID")%>"> <input type="hidden"
-								name="launch" value="<%=rs.getString("launch")%>"> <input
-								type="hidden" name="destination"
-								value="<%=rs.getString("destination")%>"> <input
-								type="hidden" name="departDate"
-								value="<%=rs.getDate("departure")%>"> <input
-								type="hidden" name="departTime"
-								value="<%=rs.getTime("departure")%>"> <input
-								type="hidden" name="arriveDate"
-								value="<%=rs.getDate("arrive")%>"> <input type="hidden"
-								name="arriveTime" value="<%=rs.getTime("arrive")%>"> <input
-								type="hidden" name="seatType" value="economy"> <input
-								class="btn btn-default" type="submit" name="ticketprice"
+							<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+							<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+							<input type="hidden" name="destination"	value="<%=rs.getString("destination")%>">
+							<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+							<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+							<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+							<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+							<input type="hidden" name="seatType" value="economy">
+							<input class="btn btn-default" type="submit" name="ticketprice"
 								value="<%="$" + rs.getInt("economyPrice")%>">
 						</form></td>
 					<td><form action="<%=choice%>">

@@ -72,7 +72,7 @@ th, td {
 			String destination = request.getParameter("destination");
 			String departureDate = request.getParameter("departureDate");
 			String returnDate = request.getParameter("returnDate");
-			session.setAttribute("returnDate", returnDate);
+
 			boolean flightsFound = false;
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -84,11 +84,7 @@ th, td {
 			boolean user;
 
 			Statement st = con.createStatement();
-			String choice = null;
-			
-			if (returnDate.isEmpty()){choice = "booking.jsp"; }
-			else{choice = "searchReturnFlights.jsp"; }
-			
+
 			try 
 			{
 				ResultSet rs;
@@ -129,7 +125,6 @@ th, td {
 							</tr>
 			<%
 						}
-						flightsFound = true;
 			%>
 						<tr>
 							<td><%=rs.getInt("FlightID")%></td>
@@ -140,7 +135,7 @@ th, td {
 							<td><%=rs.getDate("arrive")%></td>
 							<td><%=rs.getTime("arrive")%></td>
 							<%if(user==true){ %>
-								<td><form action="<%=choice%>">
+								<td><form action="booking.jsp">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -152,7 +147,7 @@ th, td {
 									<input class="btn btn-default" type="submit" name="ticketprice"
 									value="<%="$" + rs.getInt("economyPrice")%>">
 									</form></td>
-								<td><form action="<%=choice%>">
+								<td><form action="booking.jsp">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -164,7 +159,7 @@ th, td {
 									<input class="btn btn-default" type="submit" name="ticketprice"
 									value="<%="$" + rs.getInt("businessClassPrice")%>">
 									</form></td>
-								<td><form action=<%=choice%>">
+								<td><form action="booking.jsp">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -187,6 +182,7 @@ th, td {
 						</tr>
 
 			<%
+						flightsFound = true;
 
 					}
 
@@ -223,6 +219,13 @@ th, td {
           <li><a href="index.html">Home</a></li><!--
           --><li><a href="#">Special Offers</a></li><!--
           --><li><a href="#">Membership</a></li><!--
+          --><li><a href="#">Frequent Flyers</a></li><!--
+          --><li><a href="login.html">Login</a></li>
+        </ul>
+		</nav>
+
+	</footer>
+</body>="#">Membership</a></li><!--
           --><li><a href="#">Frequent Flyers</a></li><!--
           --><li><a href="login.html">Login</a></li>
         </ul>
