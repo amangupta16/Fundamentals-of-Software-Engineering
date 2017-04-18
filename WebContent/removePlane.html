@@ -93,6 +93,7 @@
  				<div class="flight-content">
     				<a href="addFlight.html">Add Flight</a>
     				<a href="removeFlight.html">Remove Flight</a>
+    				<a href="updateFlight.html">Update Flight</a>
   				</div>
 			</div><!--
           --><div class="plane">
@@ -100,6 +101,7 @@
  				<div class="plane-content">
     				<a href="addPlane.html">Add Plane</a>
     				<a href="removePlane.html">Remove Plane</a>
+    				<a href="updatePlane.html">Update Plane</a>
   				</div>
 			</div><!--
 		  --><li><a href="adminSettings.html">Settings</a></li><!--
@@ -129,28 +131,18 @@
 		<!--
 		 Registration form
 
-        --><form class="col-1-3"> <!--action="removePlane.jsp" method="post"-->
+        --><form class="col-1-3" action="removePlane.jsp" method="post">
 
           <fieldset class="register-group">
 
             <label>
-              Manufacturer
-              <input type="text" name="manfac" placeholder="Manufacturer" required>
-            </label>
-            
-            <label>
-              Model number
-              <input type="text" name="model" placeholder="Model" required>
-            </label>
-
-            <label>
-              Number of this type of plane to remove
-              <input type="text" name="number" placeholder="0" required>
-            </label>            
+              Plane ID
+              <input type="text" name="PlaneID" placeholder="Plane ID" required>
+            </label>          
             
           </fieldset>
 
-          <input class="btn btn-default" type="submit" name="submit" value="Remove Plane">
+          <input class="btn btn-default" type="submit" name="submit" value="Remove">
 
         </form>
 
