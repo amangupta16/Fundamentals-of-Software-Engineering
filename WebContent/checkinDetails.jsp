@@ -17,7 +17,7 @@
     <header class="primary-header container group">
 
       <h1 class="logo">
-        <a href="welcome.html">FLY ROYAL <br> AIRLINES</a>
+        <a href="managerWelcome.html">FLY ROYAL <br> AIRLINES</a>
       </h1>
 
       <h3 class="tagline">World-Class Facilities</h3>

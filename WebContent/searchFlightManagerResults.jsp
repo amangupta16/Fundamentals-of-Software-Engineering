@@ -54,11 +54,12 @@ th, td {
 
 		<nav class="nav primary-nav">
 			<ul>
-          <li><a href="index.html">Home</a></li><!--
-          --><li><a href="#">Special Offers</a></li><!--
-          --><li><a href="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
+          <li><a href="managerWelcome.html">Home</a></li><!--
+          --><li><a href="cancelTicketSearch.html">Cancel Ticket</a></li><!--
+          --><li><a href="#">Book Ticket</a></li><!--
+          --><li><a href="searchFlightManager.html">Check in</a></li><!--
+          --><li><a href="managerSettings.html">Settings</a></li><!--
+          --><li><a href='logout.jsp'>Log out</a></li>
         </ul>
 		</nav>
 
@@ -160,12 +161,7 @@ th, td {
 
 		<nav class="nav">
 			<ul>
-          <li><a href="index.html">Home</a></li><!--
-          --><li><a href="#">Special Offers</a></li><!--
-          --><li><a href="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
-        </ul>
+          <li><a href='logout.jsp'>Log out</a></li>
 		</nav>
 
 	</footer>
