@@ -67,6 +67,7 @@ th, td {
 	
 	<section class="row-alt">
 	<div class="lead container">
+		<h2>Search Flights</h2>
 	
 		<%
 			String from = request.getParameter("from");

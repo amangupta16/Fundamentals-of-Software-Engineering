@@ -67,6 +67,8 @@ th, td {
 
 	<section class="row-alt">
 		<div class="lead container">
+		
+		<h2>Search Return Flights</h2>
 
 			<%
 				
