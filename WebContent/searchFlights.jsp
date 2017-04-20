@@ -46,7 +46,7 @@ th, td {
 	<header class="primary-header container group">
 
 		<h1 class="logo">
-			<a href="managerWelcome.html">FLY ROYAL <br> AIRLINES
+			<a href="welcome.html">FLY ROYAL <br> AIRLINES
 			</a>
 		</h1>
 
@@ -54,11 +54,12 @@ th, td {
 
 		<nav class="nav primary-nav">
 			<ul>
-          <li><a href="index.html">Home</a></li><!--
-          --><li><a href="#">Special Offers</a></li><!--
-          --><li><a href="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
+          <li><a href="welcome.html">Home</a></li><!--
+          --><li><a href="membershipriveleges.html">Membership</a></li><!--
+          --><li><a href="frequentflyers.html">Frequent Flyers</a></li><!--
+          --><li><a href="searchFlights.html">Search Flights</a></li><!--
+          --><li><a href="userSettings.html">Settings</a></li><!--
+          --><li><a href='logout.jsp'>Log out</a></li>
         </ul>
 		</nav>
 
@@ -84,6 +85,14 @@ th, td {
 			boolean user;
 
 			Statement st = con.createStatement();
+			String choice = null;
+			
+			if(returnDate!=""){
+				choice="searchReturnFlights.jsp";
+				session.setAttribute("returnDate",returnDate);
+			} else {
+				choice="booking.jsp";
+			}
 
 			try 
 			{
@@ -135,7 +144,7 @@ th, td {
 							<td><%=rs.getDate("arrive")%></td>
 							<td><%=rs.getTime("arrive")%></td>
 							<%if(user==true){ %>
-								<td><form action="booking.jsp">
+								<td><form action="<%=choice%>">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -143,11 +152,19 @@ th, td {
 									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="rFlightID" value="null">
+									<input type="hidden" name="rLaunch" value="null">
+									<input type="hidden" name="rDestination" value="null">
+									<input type="hidden" name="rDepartDate" value="null">
+									<input type="hidden" name="rDepartTime" value="null">
+									<input type="hidden" name="rArriveDate" value="null">
+									<input type="hidden" name="rArriveTime" value="null">
+									<input type="hidden" name="rSeatType" value="null">
 									<input type="hidden" name="seatType" value="economy">
 									<input class="btn btn-default" type="submit" name="ticketprice"
 									value="<%="$" + rs.getInt("economyPrice")%>">
 									</form></td>
-								<td><form action="booking.jsp">
+								<td><form action="<%=choice%>">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -155,11 +172,20 @@ th, td {
 									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="rFlightID" value="null">
+									<input type="hidden" name="rLaunch" value="null">
+									<input type="hidden" name="rDestination" value="null">
+									<input type="hidden" name="rDepartDate" value="null">
+									<input type="hidden" name="rDepartTime" value="null">
+									<input type="hidden" name="rArriveDate" value="null">
+									<input type="hidden" name="rArriveTime" value="null">
+									<input type="hidden" name="rSeatType" value="null">
+									<input type="hidden" name="rTicketprice" value="null">									
 									<input type="hidden" name="seatType" value="business">
 									<input class="btn btn-default" type="submit" name="ticketprice"
 									value="<%="$" + rs.getInt("businessClassPrice")%>">
 									</form></td>
-								<td><form action="booking.jsp">
+								<td><form action="<%=choice%>">
 									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
 									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
@@ -167,6 +193,14 @@ th, td {
 									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+									<input type="hidden" name="rFlightID" value="null">
+									<input type="hidden" name="rLaunch" value="null">
+									<input type="hidden" name="rDestination" value="null">
+									<input type="hidden" name="rDepartDate" value="null">
+									<input type="hidden" name="rDepartTime" value="null">
+									<input type="hidden" name="rArriveDate" value="null">
+									<input type="hidden" name="rArriveTime" value="null">
+									<input type="hidden" name="rSeatType" value="null">
 									<input type="hidden" name="seatType" value="first">
 									<input class="btn btn-default" type="submit" name="ticketprice"
 									value="<%="$" + rs.getInt("firstClassPrice")%>">
@@ -216,11 +250,12 @@ th, td {
 
 		<nav class="nav">
 			<ul>
-          <li><a href="index.html">Home</a></li><!--
-          --><li><a href="#">Special Offers</a></li><!--
-          --><li><a href="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
+          <li><a href="welcome.html">Home</a></li><!--
+          --><li><a href="membershipriveleges.html">Membership</a></li><!--
+          --><li><a href="frequentflyers.html">Frequent Flyers</a></li><!--
+          --><li><a href="searchFlights.html">Search Flights</a></li><!--
+          --><li><a href="userSettings.html">Settings</a></li><!--
+          --><li><a href='logout.jsp'>Log out</a></li>
         </ul>
 		</nav>
 

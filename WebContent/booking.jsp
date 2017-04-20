@@ -50,6 +50,16 @@
         String arriveDate = request.getParameter("arriveDate");
         String arriveTime = request.getParameter("arriveTime");
         String seatType = request.getParameter("seatType");
+        
+        String rcost = request.getParameter("rTicketprice");
+        String rflightid = request.getParameter("rFlightID");
+        String rlaunch = request.getParameter("rLaunch");
+        String rdestination = request.getParameter("rDestination");
+        String rdepartDate = request.getParameter("rDepartDate");
+        String rdepartTime = request.getParameter("rDepartTime");
+        String rarriveDate = request.getParameter("rArriveDate");
+        String rarriveTime = request.getParameter("rArriveTime");
+        String rseatType = request.getParameter("rSeatType");
         %>
 
       </div>
@@ -78,6 +88,15 @@
 			  <input type="hidden" name="arriveTime" value="<%=arriveTime%>">
 			  <input type="hidden" name="ticketprice" value="<%=cost%>">
 			  <input type="hidden" name="seatType" value="<%=seatType%>">
+              <input type="hidden" name="rflightID" value="<%=rflightid%>">
+			  <input type="hidden" name="rlaunch" value="<%=rlaunch%>">
+			  <input type="hidden" name="rdestination" value="<%=rdestination%>">
+			  <input type="hidden" name="rdepartDate" value="<%=rdepartDate%>">
+			  <input type="hidden" name="rdepartTime" value="<%=rdepartTime%>">
+			  <input type="hidden" name="rarriveDate" value="<%=rarriveDate%>">
+			  <input type="hidden" name="rarriveTime" value="<%=rarriveTime%>">
+			  <input type="hidden" name="rticketprice" value="<%=rcost%>">
+			  <input type="hidden" name="rseatType" value="<%=rseatType%>">
             </label>
             
           </fieldset>

@@ -11,7 +11,7 @@
     if (rs.next()) {
     	String access = rs.getString("accType");
     	String firsttime = rs.getString("ftlogin");
-    	//session.setAttribute("userid", userid);
+    	session.setAttribute("userid", userid);
     	//out.println("welcome " + userid);
     	//out.println("<a href='logout.jsp'>Log out</a>");
     	if(access.equals("U")){
