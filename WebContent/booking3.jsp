@@ -35,10 +35,22 @@
 	String arriveDate = request.getParameter("arriveDate");
 	String arriveTime = request.getParameter("arriveTime");
 	String seatType = request.getParameter("seatType");
+	
+	String rcost1 = request.getParameter("rticketprice");
+    String rflightid = request.getParameter("rflightID");
+    String rlaunch = request.getParameter("rlaunch");
+    String rdestination = request.getParameter("rdestination");
+    String rdepartDate = request.getParameter("rdepartDate");
+    String rdepartTime = request.getParameter("rdepartTime");
+    String rarriveDate = request.getParameter("rarriveDate");
+    String rarriveTime = request.getParameter("rarriveTime");
+    String rseatType = request.getParameter("rseatType");
+	
 	String user = session.getAttribute("userid").toString();
 	String names[] = new String[num];
 	String gender[] = new String[num];
 	boolean check=false;
+	boolean rcheck = false;
 	
     for(j=0; j<num; j++){
     	names[j]=request.getParameter("name"+j);
@@ -72,6 +84,31 @@
 			System.out.println("Entered catch block");
 		}
 		System.out.println("Left try block");
+	}
+	
+	if(!rflightid.equals("null")){
+		while(!rcheck){
+			try{
+				Random rand = new Random();
+				n = rand.nextInt(1000000000);
+			    int i = st.executeUpdate("insert into bookid(id) values ('" + n + "')");
+				rcheck=true;
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				rcheck=false;
+			}
+		}
+	
+		for(j=0;j<num;j++){
+			try{
+				System.out.println("Got to try block1");
+				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+rflightid+"','"+num+"','"+rseatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
+				System.out.println("Got to try block2");
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				rcheck=false;
+				System.out.println("Entered catch block");
+			}
+			System.out.println("Left try block");
+		}
 	}
 	
 
@@ -172,11 +209,18 @@
 	}
 	}
 	
-	if(check){
-		response.sendRedirect("success.html");
-		
+	if(!rflightid.equals("null")){
+		if(check && rcheck){
+			response.sendRedirect("success.html");		
+		} else {
+			response.sendRedirect("error.html");
+		}
 	} else {
-		response.sendRedirect("error.html");
+		if(check){
+			response.sendRedirect("success.html");		
+		} else {
+			response.sendRedirect("error.html");
+		}
 	}
 	
 	
