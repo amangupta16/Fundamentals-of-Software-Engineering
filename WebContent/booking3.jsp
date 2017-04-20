@@ -77,7 +77,7 @@
 	for(j=0;j<num;j++){
 		try{
 			System.out.println("Got to try block1");
-			int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+flightid+"','"+num+"','"+seatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
+			int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender,snumber,nofbags,tbweight,checkedin) values ('"+n+"','"+user+"','"+flightid+"','"+num+"','"+seatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"','NULL','NULL','NULL','false')");
 			System.out.println("Got to try block2");
 		} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 			check=false;
