@@ -51,6 +51,14 @@
         String arriveTime = request.getParameter("arriveTime");
         String seatType = request.getParameter("seatType");
         
+        String wflightid = request.getParameter("wflightID");
+        String wlaunch = request.getParameter("wlaunch");
+        String wdestination = request.getParameter("wdestination");
+        String wdepartDate = request.getParameter("wdepartDate");
+        String wdepartTime = request.getParameter("wdepartTime");
+        String warriveDate = request.getParameter("warriveDate");
+        String warriveTime = request.getParameter("warriveTime");
+        
         String rcost = request.getParameter("rTicketprice");
         String rflightid = request.getParameter("rFlightID");
         String rlaunch = request.getParameter("rLaunch");
@@ -60,6 +68,14 @@
         String rarriveDate = request.getParameter("rArriveDate");
         String rarriveTime = request.getParameter("rArriveTime");
         String rseatType = request.getParameter("rSeatType");
+        
+        String rwflightid = request.getParameter("rwFlightID");
+        String rwlaunch = request.getParameter("rwLaunch");
+        String rwdestination = request.getParameter("rwDestination");
+        String rwdepartDate = request.getParameter("rwDepartDate");
+        String rwdepartTime = request.getParameter("rwDepartTime");
+        String rwarriveDate = request.getParameter("rwArriveDate");
+        String rwarriveTime = request.getParameter("rwArriveTime");
         %>
 
       </div>
@@ -86,6 +102,13 @@
 			  <input type="hidden" name="departTime" value="<%=departTime%>">
 			  <input type="hidden" name="arriveDate" value="<%=arriveDate%>">
 			  <input type="hidden" name="arriveTime" value="<%=arriveTime%>">
+			  <input type="hidden" name="wflightID" value="<%=wflightid%>">
+			  <input type="hidden" name="wlaunch" value="<%=wlaunch%>">
+			  <input type="hidden" name="wdestination" value="<%=wdestination%>">
+			  <input type="hidden" name="wdepartDate" value="<%=wdepartDate%>">
+			  <input type="hidden" name="wdepartTime" value="<%=wdepartTime%>">
+			  <input type="hidden" name="warriveDate" value="<%=warriveDate%>">
+			  <input type="hidden" name="warriveTime" value="<%=warriveTime%>">
 			  <input type="hidden" name="ticketprice" value="<%=cost%>">
 			  <input type="hidden" name="seatType" value="<%=seatType%>">
               <input type="hidden" name="rflightID" value="<%=rflightid%>">
@@ -95,6 +118,13 @@
 			  <input type="hidden" name="rdepartTime" value="<%=rdepartTime%>">
 			  <input type="hidden" name="rarriveDate" value="<%=rarriveDate%>">
 			  <input type="hidden" name="rarriveTime" value="<%=rarriveTime%>">
+			  <input type="hidden" name="rwflightID" value="<%=rwflightid%>">
+			  <input type="hidden" name="rwlaunch" value="<%=rwlaunch%>">
+			  <input type="hidden" name="rwdestination" value="<%=rwdestination%>">
+			  <input type="hidden" name="rwdepartDate" value="<%=rwdepartDate%>">
+			  <input type="hidden" name="rwdepartTime" value="<%=rwdepartTime%>">
+			  <input type="hidden" name="rwarriveDate" value="<%=rwarriveDate%>">
+			  <input type="hidden" name="rwarriveTime" value="<%=rwarriveTime%>">
 			  <input type="hidden" name="rticketprice" value="<%=rcost%>">
 			  <input type="hidden" name="rseatType" value="<%=rseatType%>">
             </label>

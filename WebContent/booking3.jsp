@@ -36,6 +36,22 @@
 	String arriveTime = request.getParameter("arriveTime");
 	String seatType = request.getParameter("seatType");
 	
+	String wflightid = request.getParameter("wflightID");
+    String wlaunch = request.getParameter("wlaunch");
+    String wdestination = request.getParameter("wdestination");
+    String wdepartDate = request.getParameter("wdepartDate");
+    String wdepartTime = request.getParameter("wdepartTime");
+    String warriveDate = request.getParameter("warriveDate");
+    String warriveTime = request.getParameter("warriveTime");
+    
+    String rwflightid = request.getParameter("rwflightID");
+    String rwlaunch = request.getParameter("rwlaunch");
+    String rwdestination = request.getParameter("rwdestination");
+    String rwdepartDate = request.getParameter("rwdepartDate");
+    String rwdepartTime = request.getParameter("rwdepartTime");
+    String rwarriveDate = request.getParameter("rwarriveDate");
+    String rwarriveTime = request.getParameter("rwarriveTime");
+	
 	String rcost1 = request.getParameter("rticketprice");
     String rflightid = request.getParameter("rflightID");
     String rlaunch = request.getParameter("rlaunch");
@@ -50,7 +66,9 @@
 	String names[] = new String[num];
 	String gender[] = new String[num];
 	boolean check=false;
+	boolean wcheck=false;
 	boolean rcheck = false;
+	boolean rwcheck=false;
 	
     for(j=0; j<num; j++){
     	names[j]=request.getParameter("name"+j);
@@ -86,6 +104,31 @@
 		System.out.println("Left try block");
 	}
 	
+	if(!wflightid.equals("null")){
+		while(!wcheck){
+			try{
+				Random rand = new Random();
+				n = rand.nextInt(1000000000);
+			    int i = st.executeUpdate("insert into bookid(id) values ('" + n + "')");
+				wcheck=true;
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				wcheck=false;
+			}
+		}
+	
+		for(j=0;j<num;j++){
+			try{
+				System.out.println("Got to try block1");
+				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+wflightid+"','"+num+"','"+seatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
+				System.out.println("Got to try block2");
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				wcheck=false;
+				System.out.println("Entered catch block");
+			}
+			System.out.println("Left try block");
+		}
+	}
+	
 	if(!rflightid.equals("null")){
 		while(!rcheck){
 			try{
@@ -105,6 +148,31 @@
 				System.out.println("Got to try block2");
 			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 				rcheck=false;
+				System.out.println("Entered catch block");
+			}
+			System.out.println("Left try block");
+		}
+	}
+	
+	if(!rwflightid.equals("null")){
+		while(!rwcheck){
+			try{
+				Random rand = new Random();
+				n = rand.nextInt(1000000000);
+			    int i = st.executeUpdate("insert into bookid(id) values ('" + n + "')");
+				rwcheck=true;
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				rwcheck=false;
+			}
+		}
+	
+		for(j=0;j<num;j++){
+			try{
+				System.out.println("Got to try block1");
+				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+rwflightid+"','"+num+"','"+rseatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
+				System.out.println("Got to try block2");
+			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+				rwcheck=false;
 				System.out.println("Entered catch block");
 			}
 			System.out.println("Left try block");

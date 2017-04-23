@@ -118,7 +118,7 @@ th, td {
 					temp = rs.getTimestamp("arrive").toString();
 					String aDate = temp.substring(0, 10);
 
-					if ((rs.getString("launch").equals(from) && dDate.equals(departureDate)))//|| rs.getString("destination").equals(destination)) 
+					if ((rs.getString("launch").equals(from) && dDate.equals(departureDate))) 
 					{
 						if(flightsFound==false)
 						{
@@ -160,6 +160,13 @@ th, td {
 										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="wflightID" value="null">
+										<input type="hidden" name="wlaunch" value="null">
+										<input type="hidden" name="wdestination" value="null">
+										<input type="hidden" name="wdepartDate" value="null">
+										<input type="hidden" name="wdepartTime" value="null">
+										<input type="hidden" name="warriveDate" value="null">
+										<input type="hidden" name="warriveTime" value="null">
 										<input type="hidden" name="rFlightID" value="null">
 										<input type="hidden" name="rLaunch" value="null">
 										<input type="hidden" name="rDestination" value="null">
@@ -167,7 +174,15 @@ th, td {
 										<input type="hidden" name="rDepartTime" value="null">
 										<input type="hidden" name="rArriveDate" value="null">
 										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rwFlightID" value="null">
+										<input type="hidden" name="rwLaunch" value="null">
+										<input type="hidden" name="rwDestination" value="null">
+										<input type="hidden" name="rwDepartDate" value="null">
+										<input type="hidden" name="rwDepartTime" value="null">
+										<input type="hidden" name="rwArriveDate" value="null">
+										<input type="hidden" name="rwArriveTime" value="null">
 										<input type="hidden" name="rSeatType" value="null">
+										<input type="hidden" name="rTicketprice" value="null">
 										<input type="hidden" name="seatType" value="economy">
 										<input class="btn btn-default" type="submit" name="ticketprice"
 										value="<%="$" + rs.getInt("economyPrice")%>">
@@ -180,6 +195,12 @@ th, td {
 										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="wlaunch" value="null">
+										<input type="hidden" name="wdestination" value="null">
+										<input type="hidden" name="wdepartDate" value="null">
+										<input type="hidden" name="wdepartTime" value="null">
+										<input type="hidden" name="warriveDate" value="null">
+										<input type="hidden" name="warriveTime" value="null">
 										<input type="hidden" name="rFlightID" value="null">
 										<input type="hidden" name="rLaunch" value="null">
 										<input type="hidden" name="rDestination" value="null">
@@ -187,6 +208,13 @@ th, td {
 										<input type="hidden" name="rDepartTime" value="null">
 										<input type="hidden" name="rArriveDate" value="null">
 										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rwFlightID" value="null">
+										<input type="hidden" name="rwLaunch" value="null">
+										<input type="hidden" name="rwDestination" value="null">
+										<input type="hidden" name="rwDepartDate" value="null">
+										<input type="hidden" name="rwDepartTime" value="null">
+										<input type="hidden" name="rwArriveDate" value="null">
+										<input type="hidden" name="rwArriveTime" value="null">
 										<input type="hidden" name="rSeatType" value="null">
 										<input type="hidden" name="rTicketprice" value="null">									
 										<input type="hidden" name="seatType" value="business">
@@ -201,6 +229,12 @@ th, td {
 										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="wlaunch" value="null">
+										<input type="hidden" name="wdestination" value="null">
+										<input type="hidden" name="wdepartDate" value="null">
+										<input type="hidden" name="wdepartTime" value="null">
+										<input type="hidden" name="warriveDate" value="null">
+										<input type="hidden" name="warriveTime" value="null">
 										<input type="hidden" name="rFlightID" value="null">
 										<input type="hidden" name="rLaunch" value="null">
 										<input type="hidden" name="rDestination" value="null">
@@ -208,7 +242,15 @@ th, td {
 										<input type="hidden" name="rDepartTime" value="null">
 										<input type="hidden" name="rArriveDate" value="null">
 										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rwFlightID" value="null">
+										<input type="hidden" name="rwLaunch" value="null">
+										<input type="hidden" name="rwDestination" value="null">
+										<input type="hidden" name="rwDepartDate" value="null">
+										<input type="hidden" name="rwDepartTime" value="null">
+										<input type="hidden" name="rwArriveDate" value="null">
+										<input type="hidden" name="rwArriveTime" value="null">
 										<input type="hidden" name="rSeatType" value="null">
+										<input type="hidden" name="rTicketprice" value="null">
 										<input type="hidden" name="seatType" value="first">
 										<input class="btn btn-default" type="submit" name="ticketprice"
 										value="<%="$" + rs.getInt("firstClassPrice")%>">
@@ -248,12 +290,12 @@ th, td {
 									%>
 										<tr>
 											<td><%=rs.getInt("FlightID")%><br><%=wr.getInt("FlightID")%></td>
-											<td><%=rs.getString("launch")%><br><%=wr.getInt("launch")%></td>
-											<td><%=rs.getString("destination")%><br><%=wr.getInt("destination")%></td>
-											<td><%=rs.getDate("departure")%><br><%=wr.getInt("departure")%></td>
-											<td><%=rs.getTime("departure")%><br><%=wr.getInt("departure")%></td>
-											<td><%=rs.getDate("arrive")%><br><%=wr.getInt("arrive")%></td>
-											<td><%=rs.getTime("arrive")%><br><%=wr.getInt("arrive")%></td>
+											<td><%=rs.getString("launch")%><br><%=wr.getString("launch")%></td>
+											<td><%=rs.getString("destination")%><br><%=wr.getString("destination")%></td>
+											<td><%=rs.getDate("departure")%><br><%=wr.getDate("departure")%></td>
+											<td><%=rs.getTime("departure")%><br><%=wr.getTime("departure")%></td>
+											<td><%=rs.getDate("arrive")%><br><%=wr.getDate("arrive")%></td>
+											<td><%=rs.getTime("arrive")%><br><%=wr.getTime("arrive")%></td>
 											<%if(user==true){ %>
 												<td><form action="<%=choice%>">
 													<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
@@ -263,6 +305,13 @@ th, td {
 													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="wflightID" value="<%=wr.getInt("FlightID")%>">
+													<input type="hidden" name="wlaunch" value="<%=wr.getString("launch")%>">
+													<input type="hidden" name="wdestination" value="<%=wr.getString("destination")%>">
+													<input type="hidden" name="wdepartDate" value="<%=wr.getDate("departure")%>">
+													<input type="hidden" name="wdepartTime" value="<%=wr.getTime("departure")%>">
+													<input type="hidden" name="warriveDate" value="<%=wr.getDate("arrive")%>">
+													<input type="hidden" name="warriveTime" value="<%=wr.getTime("arrive")%>">
 													<input type="hidden" name="rFlightID" value="null">
 													<input type="hidden" name="rLaunch" value="null">
 													<input type="hidden" name="rDestination" value="null">
@@ -270,7 +319,15 @@ th, td {
 													<input type="hidden" name="rDepartTime" value="null">
 													<input type="hidden" name="rArriveDate" value="null">
 													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rwFlightID" value="null">
+													<input type="hidden" name="rwLaunch" value="null">
+													<input type="hidden" name="rwDestination" value="null">
+													<input type="hidden" name="rwDepartDate" value="null">
+													<input type="hidden" name="rwDepartTime" value="null">
+													<input type="hidden" name="rwArriveDate" value="null">
+													<input type="hidden" name="rwArriveTime" value="null">
 													<input type="hidden" name="rSeatType" value="null">
+													<input type="hidden" name="rTicketprice" value="null">
 													<input type="hidden" name="seatType" value="economy">
 													<input class="btn btn-default" type="submit" name="ticketprice"
 													value="<%="$" + (rs.getInt("economyPrice")+wr.getInt("economyPrice"))%>">
@@ -283,6 +340,13 @@ th, td {
 													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="wflightID" value="<%=wr.getInt("FlightID")%>">
+													<input type="hidden" name="wlaunch" value="<%=wr.getString("launch")%>">
+													<input type="hidden" name="wdestination" value="<%=wr.getString("destination")%>">
+													<input type="hidden" name="wdepartDate" value="<%=wr.getDate("departure")%>">
+													<input type="hidden" name="wdepartTime" value="<%=wr.getTime("departure")%>">
+													<input type="hidden" name="warriveDate" value="<%=wr.getDate("arrive")%>">
+													<input type="hidden" name="warriveTime" value="<%=wr.getTime("arrive")%>">
 													<input type="hidden" name="rFlightID" value="null">
 													<input type="hidden" name="rLaunch" value="null">
 													<input type="hidden" name="rDestination" value="null">
@@ -290,6 +354,13 @@ th, td {
 													<input type="hidden" name="rDepartTime" value="null">
 													<input type="hidden" name="rArriveDate" value="null">
 													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rwFlightID" value="null">
+													<input type="hidden" name="rwLaunch" value="null">
+													<input type="hidden" name="rwDestination" value="null">
+													<input type="hidden" name="rwDepartDate" value="null">
+													<input type="hidden" name="rwDepartTime" value="null">
+													<input type="hidden" name="rwArriveDate" value="null">
+													<input type="hidden" name="rwArriveTime" value="null">
 													<input type="hidden" name="rSeatType" value="null">
 													<input type="hidden" name="rTicketprice" value="null">									
 													<input type="hidden" name="seatType" value="business">
@@ -304,6 +375,13 @@ th, td {
 													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="wflightID" value="<%=wr.getInt("FlightID")%>">
+													<input type="hidden" name="wlaunch" value="<%=wr.getString("launch")%>">
+													<input type="hidden" name="wdestination" value="<%=wr.getString("destination")%>">
+													<input type="hidden" name="wdepartDate" value="<%=wr.getDate("departure")%>">
+													<input type="hidden" name="wdepartTime" value="<%=wr.getTime("departure")%>">
+													<input type="hidden" name="warriveDate" value="<%=wr.getDate("arrive")%>">
+													<input type="hidden" name="warriveTime" value="<%=wr.getTime("arrive")%>">
 													<input type="hidden" name="rFlightID" value="null">
 													<input type="hidden" name="rLaunch" value="null">
 													<input type="hidden" name="rDestination" value="null">
@@ -311,7 +389,15 @@ th, td {
 													<input type="hidden" name="rDepartTime" value="null">
 													<input type="hidden" name="rArriveDate" value="null">
 													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rwFlightID" value="null">
+													<input type="hidden" name="rwLaunch" value="null">
+													<input type="hidden" name="rwDestination" value="null">
+													<input type="hidden" name="rwDepartDate" value="null">
+													<input type="hidden" name="rwDepartTime" value="null">
+													<input type="hidden" name="rwArriveDate" value="null">
+													<input type="hidden" name="rwArriveTime" value="null">
 													<input type="hidden" name="rSeatType" value="null">
+													<input type="hidden" name="rTicketprice" value="null">
 													<input type="hidden" name="seatType" value="first">
 													<input class="btn btn-default" type="submit" name="ticketprice"
 													value="<%="$" + (rs.getInt("firstClassPrice")+wr.getInt("firstClassPrice"))%>">
