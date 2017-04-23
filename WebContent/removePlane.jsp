@@ -1,11 +1,74 @@
 <%@ page import="java.sql.*"%>
 
 <head>
-<meta charset="utf-8">
-<title>Search Flights</title>
-<link rel="stylesheet" href="assets/stylesheets/main.css">
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
+	<meta charset="utf-8">
+	<title>Search Flights</title>
+	<link rel="stylesheet" href="assets/stylesheets/main.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
+	<style>		
+		/* The container <div> - needed to position the dropdown content */
+		.flight {
+		    position: relative;
+		    display: inline-block;
+		}
+		
+		/* Dropdown Content (Hidden by Default) */
+		.flight-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		    z-index: 1;
+		}
+		
+		/* Links inside the dropdown */
+		.flight-content a {
+		    color: black;
+		    padding: 12px 16px;
+		    text-decoration: none;
+		    display: block;
+		}
+		
+		/* Change color of dropdown links on hover */
+		.flight-content a:hover {background-color: #f1f1f1}
+		
+		/* Show the dropdown menu on hover */
+		.flight:hover .flight-content {
+		    display: block;
+		}
+		
+		.plane {
+		    position: relative;
+		    display: inline-block;
+		}
+		
+		/* Dropdown Content (Hidden by Default) */
+		.plane-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		    z-index: 1;
+		}
+		
+		/* Links inside the dropdown */
+		.plane-content a {
+		    color: black;
+		    padding: 12px 16px;
+		    text-decoration: none;
+		    display: block;
+		}
+		
+		/* Change color of dropdown links on hover */
+		.plane-content a:hover {background-color: #f1f1f1}
+		
+		/* Show the dropdown menu on hover */
+		.plane:hover .plane-content {
+		    display: block;
+		}
+	</style>
 </head>
 
 <body>
@@ -27,7 +90,7 @@
 	<header class="primary-header container group">
 
 		<h1 class="logo">
-			<a href="managerWelcome.html">FLY ROYAL <br> AIRLINES
+			<a href="adminWelcome.html">FLY ROYAL <br> AIRLINES
 			</a>
 		</h1>
 
@@ -35,11 +98,26 @@
 
 		<nav class="nav primary-nav">
 			<ul>
-          <li><a href="index.html">Home</a></li><!--
-          --><li><a href="#">Special Offers</a></li><!--
-          --><li><a href="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
+          <li><a href="adminWelcome.html">Home</a></li><!--
+          --><li><a href="addmanager.html">Add Manager</a></li><!--
+          --><div class="flight">
+  				<li class="flightbtn">Flights</li>
+ 				<div class="flight-content">
+    				<a href="addFlight.html">Add Flight</a>
+    				<a href="removeFlight.html">Remove Flight</a>
+    				<a href="updateFlight.html">Update Flight</a>
+  				</div>
+			</div><!--
+          --><div class="plane">
+  				<li class="planebtn">Planes</li>
+ 				<div class="plane-content">
+    				<a href="addPlane.html">Add Plane</a>
+    				<a href="removePlane.html">Remove Plane</a>
+    				<a href="updatePlane.html">Update Plane</a>
+  				</div>
+			</div><!--
+		  --><li><a href="adminSettings.html">Settings</a></li><!--
+          --><li><a href='logout.jsp'>Log out</a></li>
         </ul>
 		</nav>
 

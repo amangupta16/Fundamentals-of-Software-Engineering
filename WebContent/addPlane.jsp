@@ -26,7 +26,7 @@
     Statement st = con.createStatement();
     //ResultSet rs;
     try{
-	    int i = st.executeUpdate("insert into plane(manufacture, planeNumber, fclassSeats, bclassSeats, eclassSeats, activeDate) values ('" + manfac + "','" + model + "','" + fclassNum + "','" + bclassNum + "','" + eclassNum + "', CURDATE())");
+	    int i = st.executeUpdate("insert into plane(manufacture, planeNumber, fclassSeats, bclassSeats, eclassSeats, activeDate) values ('" + manfac + "','" + model + "','" + fclassNum + "','" + bclassNum + "','" + eclassNum + "',CURDATE())");
 	    if (i > 0) {
 	        //session.setAttribute("userid", user);
 	        response.sendRedirect("addPlaneSuccess.html");
@@ -34,7 +34,7 @@
 			
 	        
 	    } else {
-	        response.sendRedirect("index.jsp");
+	        response.sendRedirect("error.html");
 	    }
     } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
     	out.println("This plane ID is already taken <a href='register.html'>try again</a>");

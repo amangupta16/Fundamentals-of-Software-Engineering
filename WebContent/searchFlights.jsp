@@ -86,6 +86,7 @@ th, td {
 			boolean user;
 
 			Statement st = con.createStatement();
+			Statement sr = con.createStatement();
 			String choice = null;
 			
 			if(returnDate!=""){
@@ -98,7 +99,9 @@ th, td {
 			try 
 			{
 				ResultSet rs;
+				ResultSet wr;
 				rs = st.executeQuery(query);
+				wr = sr.executeQuery(query);
 				
 				if (session == null || session.getAttribute("userid") == null) {
 				    user = false;
@@ -115,7 +118,7 @@ th, td {
 					temp = rs.getTimestamp("arrive").toString();
 					String aDate = temp.substring(0, 10);
 
-					if (rs.getString("launch").equals(from) && rs.getString("destination").equals(destination) && dDate.equals(departureDate)) 
+					if ((rs.getString("launch").equals(from) && dDate.equals(departureDate)))//|| rs.getString("destination").equals(destination)) 
 					{
 						if(flightsFound==false)
 						{
@@ -135,88 +138,199 @@ th, td {
 							</tr>
 			<%
 						}
-			%>
-						<tr>
-							<td><%=rs.getInt("FlightID")%></td>
-							<td><%=rs.getString("launch")%></td>
-							<td><%=rs.getString("destination")%></td>
-							<td><%=rs.getDate("departure")%></td>
-							<td><%=rs.getTime("departure")%></td>
-							<td><%=rs.getDate("arrive")%></td>
-							<td><%=rs.getTime("arrive")%></td>
-							<%if(user==true){ %>
-								<td><form action="<%=choice%>">
-									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
-									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
-									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
-									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
-									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
-									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
-									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
-									<input type="hidden" name="rFlightID" value="null">
-									<input type="hidden" name="rLaunch" value="null">
-									<input type="hidden" name="rDestination" value="null">
-									<input type="hidden" name="rDepartDate" value="null">
-									<input type="hidden" name="rDepartTime" value="null">
-									<input type="hidden" name="rArriveDate" value="null">
-									<input type="hidden" name="rArriveTime" value="null">
-									<input type="hidden" name="rSeatType" value="null">
-									<input type="hidden" name="seatType" value="economy">
-									<input class="btn btn-default" type="submit" name="ticketprice"
-									value="<%="$" + rs.getInt("economyPrice")%>">
-									</form></td>
-								<td><form action="<%=choice%>">
-									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
-									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
-									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
-									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
-									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
-									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
-									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
-									<input type="hidden" name="rFlightID" value="null">
-									<input type="hidden" name="rLaunch" value="null">
-									<input type="hidden" name="rDestination" value="null">
-									<input type="hidden" name="rDepartDate" value="null">
-									<input type="hidden" name="rDepartTime" value="null">
-									<input type="hidden" name="rArriveDate" value="null">
-									<input type="hidden" name="rArriveTime" value="null">
-									<input type="hidden" name="rSeatType" value="null">
-									<input type="hidden" name="rTicketprice" value="null">									
-									<input type="hidden" name="seatType" value="business">
-									<input class="btn btn-default" type="submit" name="ticketprice"
-									value="<%="$" + rs.getInt("businessClassPrice")%>">
-									</form></td>
-								<td><form action="<%=choice%>">
-									<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
-									<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
-									<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
-									<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
-									<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
-									<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
-									<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
-									<input type="hidden" name="rFlightID" value="null">
-									<input type="hidden" name="rLaunch" value="null">
-									<input type="hidden" name="rDestination" value="null">
-									<input type="hidden" name="rDepartDate" value="null">
-									<input type="hidden" name="rDepartTime" value="null">
-									<input type="hidden" name="rArriveDate" value="null">
-									<input type="hidden" name="rArriveTime" value="null">
-									<input type="hidden" name="rSeatType" value="null">
-									<input type="hidden" name="seatType" value="first">
-									<input class="btn btn-default" type="submit" name="ticketprice"
-									value="<%="$" + rs.getInt("firstClassPrice")%>">
-									</form></td>
-							<% } else { %>
-								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
-									value="<%="$" + rs.getInt("economyPrice")%>"></form></td>
-								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
-									value="<%="$" + rs.getInt("businessClassPrice")%>"></form></td>
-								<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
-									value="<%="$" + rs.getInt("firstClassPrice")%>"></form></td>
-							<%} %>
-						</tr>
-
-			<%
+						
+						if(rs.getString("destination").equals(destination))
+						{
+							
+				%>
+							<tr>
+								<td><%=rs.getInt("FlightID")%></td>
+								<td><%=rs.getString("launch")%></td>
+								<td><%=rs.getString("destination")%></td>
+								<td><%=rs.getDate("departure")%></td>
+								<td><%=rs.getTime("departure")%></td>
+								<td><%=rs.getDate("arrive")%></td>
+								<td><%=rs.getTime("arrive")%></td>
+								<%if(user==true){ %>
+									<td><form action="<%=choice%>">
+										<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+										<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+										<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+										<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="rFlightID" value="null">
+										<input type="hidden" name="rLaunch" value="null">
+										<input type="hidden" name="rDestination" value="null">
+										<input type="hidden" name="rDepartDate" value="null">
+										<input type="hidden" name="rDepartTime" value="null">
+										<input type="hidden" name="rArriveDate" value="null">
+										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rSeatType" value="null">
+										<input type="hidden" name="seatType" value="economy">
+										<input class="btn btn-default" type="submit" name="ticketprice"
+										value="<%="$" + rs.getInt("economyPrice")%>">
+										</form></td>
+									<td><form action="<%=choice%>">
+										<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+										<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+										<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+										<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="rFlightID" value="null">
+										<input type="hidden" name="rLaunch" value="null">
+										<input type="hidden" name="rDestination" value="null">
+										<input type="hidden" name="rDepartDate" value="null">
+										<input type="hidden" name="rDepartTime" value="null">
+										<input type="hidden" name="rArriveDate" value="null">
+										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rSeatType" value="null">
+										<input type="hidden" name="rTicketprice" value="null">									
+										<input type="hidden" name="seatType" value="business">
+										<input class="btn btn-default" type="submit" name="ticketprice"
+										value="<%="$" + rs.getInt("businessClassPrice")%>">
+										</form></td>
+									<td><form action="<%=choice%>">
+										<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+										<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+										<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+										<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="rFlightID" value="null">
+										<input type="hidden" name="rLaunch" value="null">
+										<input type="hidden" name="rDestination" value="null">
+										<input type="hidden" name="rDepartDate" value="null">
+										<input type="hidden" name="rDepartTime" value="null">
+										<input type="hidden" name="rArriveDate" value="null">
+										<input type="hidden" name="rArriveTime" value="null">
+										<input type="hidden" name="rSeatType" value="null">
+										<input type="hidden" name="seatType" value="first">
+										<input class="btn btn-default" type="submit" name="ticketprice"
+										value="<%="$" + rs.getInt("firstClassPrice")%>">
+										</form></td>
+								<% } else { %>
+									<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+										value="<%="$" + rs.getInt("economyPrice")%>"></form></td>
+									<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+										value="<%="$" + rs.getInt("businessClassPrice")%>"></form></td>
+									<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+										value="<%="$" + rs.getInt("firstClassPrice")%>"></form></td>
+								<%} %>
+							</tr>
+	
+				<%
+						} else {
+							while(wr.next()){
+								temp = wr.getTimestamp("departure").toString();
+								String wdDate = temp.substring(0,10);
+								
+								temp = wr.getTimestamp("arrive").toString();
+								String waDate = temp.substring(0,10);
+								
+								long j = wr.getTimestamp("departure").getTime()-rs.getTimestamp("arrive").getTime();
+								long k = j/(60*60*1000);
+								long l = j/(60*1000)%60;
+								boolean time = false;
+								if((k==6 && l==0) || (k<6 && k>0)){
+									time = true;
+								}
+								//System.out.println(k+","+l+","+rs.getString("FlightID")+","+wr.getString("FlightID")+","+time);
+								
+								
+								if(rs.getString("destination").equals(wr.getString("launch")) && wr.getString("destination").equals(destination) && time)
+								{
+									//System.out.println("This flight can cause a layover.");
+									%>
+										<tr>
+											<td><%=rs.getInt("FlightID")%><br><%=wr.getInt("FlightID")%></td>
+											<td><%=rs.getString("launch")%><br><%=wr.getInt("launch")%></td>
+											<td><%=rs.getString("destination")%><br><%=wr.getInt("destination")%></td>
+											<td><%=rs.getDate("departure")%><br><%=wr.getInt("departure")%></td>
+											<td><%=rs.getTime("departure")%><br><%=wr.getInt("departure")%></td>
+											<td><%=rs.getDate("arrive")%><br><%=wr.getInt("arrive")%></td>
+											<td><%=rs.getTime("arrive")%><br><%=wr.getInt("arrive")%></td>
+											<%if(user==true){ %>
+												<td><form action="<%=choice%>">
+													<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+													<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+													<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+													<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="rFlightID" value="null">
+													<input type="hidden" name="rLaunch" value="null">
+													<input type="hidden" name="rDestination" value="null">
+													<input type="hidden" name="rDepartDate" value="null">
+													<input type="hidden" name="rDepartTime" value="null">
+													<input type="hidden" name="rArriveDate" value="null">
+													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rSeatType" value="null">
+													<input type="hidden" name="seatType" value="economy">
+													<input class="btn btn-default" type="submit" name="ticketprice"
+													value="<%="$" + (rs.getInt("economyPrice")+wr.getInt("economyPrice"))%>">
+													</form></td>
+												<td><form action="<%=choice%>">
+													<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+													<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+													<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+													<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="rFlightID" value="null">
+													<input type="hidden" name="rLaunch" value="null">
+													<input type="hidden" name="rDestination" value="null">
+													<input type="hidden" name="rDepartDate" value="null">
+													<input type="hidden" name="rDepartTime" value="null">
+													<input type="hidden" name="rArriveDate" value="null">
+													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rSeatType" value="null">
+													<input type="hidden" name="rTicketprice" value="null">									
+													<input type="hidden" name="seatType" value="business">
+													<input class="btn btn-default" type="submit" name="ticketprice"
+													value="<%="$" + (rs.getInt("businessClassPrice")+wr.getInt("businessClassPrice"))%>">
+													</form></td>
+												<td><form action="<%=choice%>">
+													<input type="hidden" name="flightID" value="<%=rs.getInt("FlightID")%>">
+													<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+													<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+													<input type="hidden" name="departDate" value="<%=rs.getDate("departure")%>">
+													<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
+													<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
+													<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+													<input type="hidden" name="rFlightID" value="null">
+													<input type="hidden" name="rLaunch" value="null">
+													<input type="hidden" name="rDestination" value="null">
+													<input type="hidden" name="rDepartDate" value="null">
+													<input type="hidden" name="rDepartTime" value="null">
+													<input type="hidden" name="rArriveDate" value="null">
+													<input type="hidden" name="rArriveTime" value="null">
+													<input type="hidden" name="rSeatType" value="null">
+													<input type="hidden" name="seatType" value="first">
+													<input class="btn btn-default" type="submit" name="ticketprice"
+													value="<%="$" + (rs.getInt("firstClassPrice")+wr.getInt("firstClassPrice"))%>">
+													</form></td>
+											<% } else { %>
+												<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+													value="<%="$" + (rs.getInt("economyPrice")+wr.getInt("economyPrice"))%>"></form></td>
+												<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+													value="<%="$" + (rs.getInt("businessClassPrice")+wr.getInt("businessClassPrice"))%>"></form></td>
+												<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
+													value="<%="$" + (rs.getInt("firstClassPrice")+wr.getInt("firstClassPrice"))%>"></form></td>
+											<%} %>
+										</tr>
+				
+									<%
+								}
+							}
+						}
+						
 						flightsFound = true;
 
 					}
