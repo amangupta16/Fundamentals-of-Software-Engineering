@@ -264,6 +264,16 @@ th, td {
 										value="<%="$" + rs.getInt("firstClassPrice")%>"></form></td>
 								<%} %>
 							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+									<td><form action="map.jsp">
+										<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+										<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+										<input class="btn btn-default" type="submit" name="showMap"
+										value="Show Map">
+										</form></td>
+							</tr>
 	
 				<%
 						} else {
@@ -410,6 +420,17 @@ th, td {
 												<td><form action="login.html"><input class="btn btn-default" type="submit" name="submit"
 													value="<%="$" + (rs.getInt("firstClassPrice")+wr.getInt("firstClassPrice"))%>"></form></td>
 											<%} %>
+										</tr>
+										
+										<tr>
+											<td></td>
+											<td></td>
+											<td><form action="map.jsp">
+											<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
+											<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+											<input class="btn btn-default" type="submit" name="showMap"
+											value="Show Map">
+											</form></td>
 										</tr>
 				
 									<%
