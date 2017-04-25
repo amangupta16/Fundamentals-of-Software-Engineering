@@ -69,7 +69,8 @@ th, td {
 	<section class="row-alt">
 	<div class="lead container">
 	<h2>FLight Maps</h2>
-	
+		<input class="btn btn-default" type="submit" onclick = "goBack()" value="Go Back">
+										
 		<%
 			String start = request.getParameter("launch");
 			String end = request.getParameter("destination");
@@ -114,8 +115,6 @@ th, td {
 					}
 				}
 				
-				System.out.println(start+" "+startLat+" "+startLon);
-				System.out.println(end+" "+endLat+" "+endLon);
 				
 			} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 					out.println("This username, email, or password is already taken <a href='register.html'>TRY AGAIN</a>");
@@ -124,63 +123,84 @@ th, td {
 			
 		%>
 		
-	
-	 <div id="map"></div>
-    <script>
-      function initMap() {
-        var startLocation = {lat: <%=startLat%>, lng: -<%=startLon%>};
-        var endLocation = {lat: <%=endLat%>, lng: -<%=endLon%>};
-        
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: startLocation
-        });
-
-        var startMarker = new google.maps.Marker({
-          position: startLocation,
-          map: map,
-          title: 'Click to zoom'
-        });
-
-        var endMarker = new google.maps.Marker({
-            position: endLocation,
-            map: map,
-            title: 'Click to zoom'
-          });
-        
-        map.addListener('center_changed', function() {
-          // 3 seconds after the center of the map has changed, pan back to the
-          // marker.
-          window.setTimeout(function() {
-            map.panTo(startMarker.getPosition());
-          }, 3000);
-        });
-
-        startMarker.addListener('click', function() {
-          map.setZoom(8);
-          map.setCenter(startMarker.getPosition());
-        });
-        
-        endMarker.addListener('click', function() {
-        	map.setZoom(8);
-        	map.setCenter(endMarker.getPosition());
-        });
-        
-        var line = new google.maps.Polyline({
-            path: [new google.maps.LatLng(<%=startLat%>, -<%=startLon%>), new google.maps.LatLng(<%=endLat%>, -<%=endLon%>)],
-            strokeColor: "#FF0000",
-            strokeOpacity: 1.0,
-            strokeWeight: 10,
-            geodesic: true,
-            map: map
-        });
-
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2_9s07v4Jg1prL0L1nrMwsLc1byD1XU8&callback=initMap">
-    </script>
-    
+		<script>
+			function goBack() {
+		    window.history.back();
+			}
+		</script>	
+			
+		<div id="map"></div>
+		<script>
+		      function initMap() {
+		        
+		    	var startLocation = {lat: <%=startLat%>, lng: -<%=startLon%>};
+		        var endLocation = {lat: <%=endLat%>, lng: -<%=endLon%>};
+		        
+		        
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 4,
+		          center: startLocation
+		        });
+		
+		        var startMarker = new google.maps.Marker({
+		          position: startLocation,
+		          map: map,
+		          title: 'Click to zoom'
+		        });
+		
+		        var endMarker = new google.maps.Marker({
+		            position: endLocation,
+		            map: map,
+		            title: 'Click to zoom'
+		          });
+		        
+		        var markers = [];
+		        markers[0] = startMarker;
+		        markers[1] = endMarker;
+		        var bounds = new google.maps.LatLngBounds();
+		        for (var i = 0; i < markers.length; i++) {
+		         bounds.extend(markers[i].getPosition());
+		        }
+		        map.fitBounds(bounds);
+		        
+		        var line = new google.maps.Polyline({
+		            path: [new google.maps.LatLng(<%=startLat%>, -<%=startLon%>), new google.maps.LatLng(<%=endLat%>, -<%=endLon%>)],
+		            strokeColor: "#FF0000",
+		            strokeOpacity: 1.0,
+		            strokeWeight: 10,
+		            geodesic: true,
+		            map: map
+		        });
+		        	        
+		        
+		        startMarker.addListener('click', function() {
+		          map.setZoom(8);
+		          map.setCenter(startMarker.getPosition());
+		        });
+		        
+		        startMarker.addListener('mouseover', function() {
+		        	var infowindow = new google.maps.InfoWindow({content:"Departure: <%=start%>"});
+		        	infowindow.open(map,startMarker);
+		        });
+		        
+		        endMarker.addListener('click', function() {
+		        	map.setZoom(8);
+		        	map.setCenter(endMarker.getPosition());
+		        });
+		        
+		        endMarker.addListener('mouseover', function() {
+		        	var infowindow = new google.maps.InfoWindow({content:"Arrival: <%=end%>"});
+		        	infowindow.open(map,endMarker);
+		        });
+		       
+		
+		      }
+		</script>
+		    
+		 <script async defer
+		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2_9s07v4Jg1prL0L1nrMwsLc1byD1XU8&callback=initMap">
+		 </script>
+  
     </div>
 	</section>
 </body>
