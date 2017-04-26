@@ -15,7 +15,15 @@
 <%@page import="javax.mail.internet.InternetAddress"%>
 <%@page import="javax.mail.Transport"%>
 
-
+<%
+	boolean user;
+	
+	if (session == null || session.getAttribute("userid") == null) {
+	    user = false;
+	} else {
+	    user = true;
+	}
+%>
 
 <head>
 <meta charset="utf-8">
@@ -40,7 +48,7 @@ th, td {
 	padding: 6px;
 }
 </style>
-
+<%if(user==true){ %>
 	<!-- Header -->
 
 	<header class="primary-header container group">
@@ -62,8 +70,30 @@ th, td {
           --><li><a href='logout.jsp'>Log out</a></li>
         </ul>
 		</nav>
+		</header>
+		<%} else { %>
+		<!-- Header -->
 
-	</header>
+    <header class="primary-header container group">
+
+      <h1 class="logo">
+        <a href="index.html">FLY ROYAL <br> AIRLINES</a>
+      </h1>
+
+      <h3 class="tagline">World-Class Facilities</h3>
+
+      <nav class="nav primary-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li><!--
+          --><li><a href="membershipriveleges.html">Membership</a></li><!--
+          --><li><a href="frequentflyers.html">Frequent Flyers</a></li><!--
+          --><li><a href="searchFlights.html">Search Flights</a></li><!--
+          --><li><a href="userSettings.html">Settings</a></li><!--
+          --><li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+      </header>
+		<%} %>
 	
 	<section class="row-alt">
 	<div class="lead container">
@@ -83,7 +113,6 @@ th, td {
 			String password = "root";
 			Connection con = DriverManager.getConnection(url, username, password);
 			String query = "select * from flight";
-			boolean user;
 
 			Statement st = con.createStatement();
 			Statement sr = con.createStatement();
@@ -102,12 +131,6 @@ th, td {
 				ResultSet wr;
 				rs = st.executeQuery(query);
 				wr = sr.executeQuery(query);
-				
-				if (session == null || session.getAttribute("userid") == null) {
-				    user = false;
-				} else {
-				    user = true;
-				}
 				
 				while (rs.next()) 
 				{
@@ -195,6 +218,7 @@ th, td {
 										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="wflightID" value="null">
 										<input type="hidden" name="wlaunch" value="null">
 										<input type="hidden" name="wdestination" value="null">
 										<input type="hidden" name="wdepartDate" value="null">
@@ -229,6 +253,7 @@ th, td {
 										<input type="hidden" name="departTime" value="<%=rs.getTime("departure")%>">
 										<input type="hidden" name="arriveDate" value="<%=rs.getDate("arrive")%>">
 										<input type="hidden" name="arriveTime" value="<%=rs.getTime("arrive")%>">
+										<input type="hidden" name="wflightID" value="null">
 										<input type="hidden" name="wlaunch" value="null">
 										<input type="hidden" name="wdestination" value="null">
 										<input type="hidden" name="wdepartDate" value="null">
@@ -478,13 +503,6 @@ th, td {
           --><li><a href="searchFlights.html">Search Flights</a></li><!--
           --><li><a href="userSettings.html">Settings</a></li><!--
           --><li><a href='logout.jsp'>Log out</a></li>
-        </ul>
-		</nav>
-
-	</footer>
-</body>="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
         </ul>
 		</nav>
 

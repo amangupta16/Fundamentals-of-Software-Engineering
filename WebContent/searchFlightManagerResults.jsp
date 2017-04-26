@@ -165,11 +165,4 @@ th, td {
 		</nav>
 
 	</footer>
-</body>="#">Membership</a></li><!--
-          --><li><a href="#">Frequent Flyers</a></li><!--
-          --><li><a href="login.html">Login</a></li>
-        </ul>
-		</nav>
-
-	</footer>
 </body>
