@@ -14,6 +14,13 @@
 <%@page import="javax.mail.internet.MimeMessage"%>                                                                                          
 <%@page import="javax.mail.internet.InternetAddress"%>                                                                                      
 <%@page import="javax.mail.Transport"%>
+<%@page import="java.security.spec.KeySpec"%>
+<%@page import="javax.crypto.Cipher"%>
+<%@page import="javax.crypto.SecretKey"%>
+<%@page import="javax.crypto.SecretKeyFactory"%>
+<%@page import="javax.crypto.spec.DESedeKeySpec"%>
+<%@page import="org.apache.commons.codec.binary.Base64"%>
+
 <%
     String user = request.getParameter("uname");    
     String pwd = request.getParameter("pass");
@@ -29,6 +36,30 @@
     boolean hasUpperCase = !pwd.equals(pwd.toLowerCase());
     boolean hasLowerCase = !pwd.equals(pwd.toUpperCase());
     
+    String UNICODE_FORMAT = "UTF8";
+    String DESEDE_ENCRYPTION_SCHEME = "DESede";
+    KeySpec ks;
+    SecretKeyFactory skf;
+    Cipher cipher;
+    byte[] arrayBytes;
+    String myEncryptionKey;
+    String myEncryptionScheme;
+    SecretKey key;
+    
+    myEncryptionKey = "ThisIsSpartaThisIsSparta";
+    myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
+    arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
+    ks = new DESedeKeySpec(arrayBytes);
+    skf = SecretKeyFactory.getInstance(myEncryptionScheme);
+    cipher = Cipher.getInstance(myEncryptionScheme);
+    key = skf.generateSecret(ks);
+    
+    String encryptedString = null;
+    cipher.init(Cipher.ENCRYPT_MODE, key);
+    byte[] plainText = pwd.getBytes(UNICODE_FORMAT);
+    byte[] encryptedText = cipher.doFinal(plainText);
+    encryptedString = new String(Base64.encodeBase64(encryptedText));
+    
     if(pwd.length()<8){
     	check=false;
     }
@@ -41,7 +72,7 @@
     //ResultSet rs;
     if(check){
 	    try{
-		    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'U', 'NO')");
+		    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + encryptedString + "', CURDATE(), 'U', 'NO')");
 		    if (i > 0) {
 		        //session.setAttribute("userid", user);
 		        response.sendRedirect("login.html");
