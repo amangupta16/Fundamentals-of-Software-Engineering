@@ -96,12 +96,11 @@ th, td {
 		<%} %>
 		
 		<%
-		String from = request.getParameter("from");
-		String destination = request.getParameter("destination");
-		String departureDate = request.getParameter("departureDate");
-		String returnDate = request.getParameter("returnDate");
-		
-		%>>
+			String from = request.getParameter("from");
+			String destination = request.getParameter("destination");
+			String departureDate = request.getParameter("departureDate");
+			String returnDate = request.getParameter("returnDate");
+			%>
 	
 	<section class="row-alt">
 	<div class="lead container">
@@ -118,10 +117,10 @@ th, td {
 							<input type="hidden" name="returnDate" value="<%=returnDate%>">
 							<input class="btn btn-default" type="submit" name="sortByTime"
 										value="Sort By Time"></form></td></table></h2>
+		
 	
 		<%
 			
-
 			boolean flightsFound = false;
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -129,7 +128,7 @@ th, td {
 			String username = "root";
 			String password = "root";
 			Connection con = DriverManager.getConnection(url, username, password);
-			String query = "select * from flight";
+			String query = "select * from flight order by departure";
 
 			Statement st = con.createStatement();
 			Statement sr = con.createStatement();
