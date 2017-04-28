@@ -450,9 +450,10 @@ th, td {
 										<tr>
 											<td></td>
 											<td></td>
-											<td><form action="map.jsp">
+											<td><form action="multimap.jsp">
 											<input type="hidden" name="launch" value="<%=rs.getString("launch")%>">
 											<input type="hidden" name="destination" value="<%=rs.getString("destination")%>">
+											<input type="hidden" name="fdestination" value="<%=wr.getString("destination")%>">
 											<input class="btn btn-default" type="submit" name="showMap"
 											value="Show Map">
 											</form></td>
