@@ -171,7 +171,7 @@
 				Message message = new MimeMessage(session1);
 				message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 				message.setRecipients(Message.RecipientType.TO,
-						InternetAddress.parse("aman-gupta@uiowa.edu"));
+						InternetAddress.parse(email));
 				message.setSubject("Congrats!! Your tickets have been booked successfully");
 				 messageBodyPart = new MimeBodyPart();
 				 message.setText("Dear Customer," +
@@ -293,7 +293,7 @@
 					Message message = new MimeMessage(session1);
 					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 					message.setRecipients(Message.RecipientType.TO,
-							InternetAddress.parse("aman-gupta@uiowa.edu"));
+							InternetAddress.parse(email));
 					message.setSubject("Congrats!! Your tickets have been booked successfully");
 					 messageBodyPart = new MimeBodyPart();
 					 message.setText("Dear Customer," +
@@ -416,7 +416,7 @@
 					Message message = new MimeMessage(session1);
 					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 					message.setRecipients(Message.RecipientType.TO,
-							InternetAddress.parse("aman-gupta@uiowa.edu"));
+							InternetAddress.parse(email));
 					message.setSubject("Congrats!! Your tickets have been booked successfully");
 					 messageBodyPart = new MimeBodyPart();
 					 message.setText("Dear Customer," +
@@ -539,7 +539,7 @@
 					Message message = new MimeMessage(session1);
 					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
 					message.setRecipients(Message.RecipientType.TO,
-							InternetAddress.parse("aman-gupta@uiowa.edu"));
+							InternetAddress.parse(email));
 					message.setSubject("Congrats!! Your tickets have been booked successfully");
 					 messageBodyPart = new MimeBodyPart();
 					 message.setText("Dear Customer," +
