@@ -97,6 +97,104 @@
 			System.out.println("Got to try block1");
 			int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+flightid+"','"+num+"','"+seatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
 			System.out.println("Got to try block2");
+					
+			ResultSet rs1 = st.executeQuery("select passName, passAge, passGender, bookingID, planeNumber, f.FlightID as FlightID, launch, destination, departure, arrive from booking b, flight f, plane p where bookingID = '"+n+"' and b.FlightID = f.FlightID and f.PlaneID = f.PlaneID;");
+			if(rs1.next()){			
+			String passName = rs1.getString("passName");
+			String passAge = rs1.getString("passAge");
+			String passGender = rs1.getString("passGender");			
+			String bookingID = rs1.getString("bookingID");
+			String planeNumber = rs1.getString("planeNumber");
+			String FlightID = rs1.getString("FlightID");
+
+			try {
+				OutputStream file = new FileOutputStream(new File("Booking"+n+".pdf"));
+
+				Document document = new Document();
+				PdfWriter.getInstance(document, file);
+
+				document.open();
+				document.add(new Paragraph("\n\n Hello,"+
+				"\n\n Your flight has been booked."+
+				"\n Following are the details of your booking:"+
+				"\n\n\t\t\t\t Booking ID:  "+n+
+				"\n\t\t\t\t Passenger Name:  "+passName+
+				"\n\t\t\t\t Age:  "+passAge+
+				"\n\t\t\t\t Gender:  "+passGender+
+				"\n\n\n Your Flight Details:"));
+				
+
+				
+				document.add(new Paragraph("\n\t\t\t\t Flight ID:  "+FlightID+
+						"\n\t\t\t\t Plane Name:  "+planeNumber+
+						"\n\t\t\t\t Seat Type:  "+seatType+
+						"\n\t\t\t\t From:  "+launch+
+						"\n\t\t\t\t To:  "+destination+
+						"\n\t\t\t\t Depart Time:  "+departTime+
+						"\n\t\t\t\t Arrival Time:  "+arriveTime+
+						"\n\n\n Total number of tickets:  "+num+
+						"\n Price per ticket:  "+cost1));
+				
+				
+
+				document.close();
+				file.close();
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			}
+
+			ResultSet rs = st.executeQuery("select distinct(email) from memberss where uname = '"+user+"'");
+			if(rs.next()){
+			String email = rs.getString("email");
+			Properties props = new Properties();
+			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class",
+					"javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.port", "465");
+
+			Session session1 = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication("flyroyalairlines","fundamentals");
+					}
+				});
+
+			try {
+
+				BodyPart messageBodyPart = new MimeBodyPart();
+				Multipart multipart = new MimeMultipart();
+				Message message = new MimeMessage(session1);
+				message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
+				message.setRecipients(Message.RecipientType.TO,
+						InternetAddress.parse("aman-gupta@uiowa.edu"));
+				message.setSubject("Congrats!! Your tickets have been booked successfully");
+				 messageBodyPart = new MimeBodyPart();
+				 message.setText("Dear Customer," +
+							"\n\n You ticket has been booked." +
+							"\n Please find attached the pdf." +
+							"\n\n Warm Regards," +
+							"\n Fly Royal Airlines");
+			     String filename = "Booking"+n+".pdf";
+			     DataSource source = new FileDataSource(filename);
+			     messageBodyPart.setDataHandler(new DataHandler(source));
+			     messageBodyPart.setFileName(filename);
+			     multipart.addBodyPart(messageBodyPart);
+			     message.setContent(multipart );
+
+				Transport.send(message);
+
+				System.out.println("Done");
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			}		
+					
 		} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 			check=false;
 			System.out.println("Entered catch block");
@@ -121,6 +219,104 @@
 				System.out.println("Got to try block1");
 				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+wflightid+"','"+num+"','"+seatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
 				System.out.println("Got to try block2");
+						
+				ResultSet rs1 = st.executeQuery("select passName, passAge, passGender, bookingID, planeNumber, f.FlightID as FlightID, launch, destination, departure, arrive from booking b, flight f, plane p where bookingID = '"+n+"' and b.FlightID = f.FlightID and f.PlaneID = f.PlaneID;");
+				if(rs1.next()){			
+				String passName = rs1.getString("passName");
+				String passAge = rs1.getString("passAge");
+				String passGender = rs1.getString("passGender");			
+				String bookingID = rs1.getString("bookingID");
+				String planeNumber = rs1.getString("planeNumber");
+				String FlightID = rs1.getString("FlightID");
+
+				try {
+					OutputStream file = new FileOutputStream(new File("Booking"+n+".pdf"));
+
+					Document document = new Document();
+					PdfWriter.getInstance(document, file);
+
+					document.open();
+					document.add(new Paragraph("\n\n Hello,"+
+					"\n\n Your flight has been booked."+
+					"\n Following are the details of your booking:"+
+					"\n\n\t\t\t\t Booking ID:  "+n+
+					"\n\t\t\t\t Passenger Name:  "+passName+
+					"\n\t\t\t\t Age:  "+passAge+
+					"\n\t\t\t\t Gender:  "+passGender+
+					"\n\n\n Your Flight Details:"));
+					
+
+					
+					document.add(new Paragraph("\n\t\t\t\t Flight ID:  "+FlightID+
+							"\n\t\t\t\t Plane Name:  "+planeNumber+
+							"\n\t\t\t\t Seat Type:  "+seatType+
+							"\n\t\t\t\t From:  "+launch+
+							"\n\t\t\t\t To:  "+destination+
+							"\n\t\t\t\t Depart Time:  "+departTime+
+							"\n\t\t\t\t Arrival Time:  "+arriveTime+
+							"\n\n\n Total number of tickets:  "+num+
+							"\n Price per ticket:  "+cost1));
+					
+					
+
+					document.close();
+					file.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
+				}
+
+				ResultSet rs = st.executeQuery("select distinct(email) from memberss where uname = '"+user+"'");
+				if(rs.next()){
+				String email = rs.getString("email");
+				Properties props = new Properties();
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class",
+						"javax.net.ssl.SSLSocketFactory");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.port", "465");
+
+				Session session1 = Session.getInstance(props,
+					new javax.mail.Authenticator() {
+						protected PasswordAuthentication getPasswordAuthentication() {
+							return new PasswordAuthentication("flyroyalairlines","fundamentals");
+						}
+					});
+
+				try {
+
+					BodyPart messageBodyPart = new MimeBodyPart();
+					Multipart multipart = new MimeMultipart();
+					Message message = new MimeMessage(session1);
+					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
+					message.setRecipients(Message.RecipientType.TO,
+							InternetAddress.parse("aman-gupta@uiowa.edu"));
+					message.setSubject("Congrats!! Your tickets have been booked successfully");
+					 messageBodyPart = new MimeBodyPart();
+					 message.setText("Dear Customer," +
+								"\n\n You ticket has been booked." +
+								"\n Please find attached the pdf." +
+								"\n\n Warm Regards," +
+								"\n Fly Royal Airlines");
+				     String filename = "Booking"+n+".pdf";
+				     DataSource source = new FileDataSource(filename);
+				     messageBodyPart.setDataHandler(new DataHandler(source));
+				     messageBodyPart.setFileName(filename);
+				     multipart.addBodyPart(messageBodyPart);
+				     message.setContent(multipart );
+
+					Transport.send(message);
+
+					System.out.println("Done");
+
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+				}		
+						
 			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 				wcheck=false;
 				System.out.println("Entered catch block");
@@ -146,6 +342,104 @@
 				System.out.println("Got to try block1");
 				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+rflightid+"','"+num+"','"+rseatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
 				System.out.println("Got to try block2");
+						
+				ResultSet rs1 = st.executeQuery("select passName, passAge, passGender, bookingID, planeNumber, f.FlightID as FlightID, launch, destination, departure, arrive from booking b, flight f, plane p where bookingID = '"+n+"' and b.FlightID = f.FlightID and f.PlaneID = f.PlaneID;");
+				if(rs1.next()){			
+				String passName = rs1.getString("passName");
+				String passAge = rs1.getString("passAge");
+				String passGender = rs1.getString("passGender");			
+				String bookingID = rs1.getString("bookingID");
+				String planeNumber = rs1.getString("planeNumber");
+				String FlightID = rs1.getString("FlightID");
+
+				try {
+					OutputStream file = new FileOutputStream(new File("Booking"+n+".pdf"));
+
+					Document document = new Document();
+					PdfWriter.getInstance(document, file);
+
+					document.open();
+					document.add(new Paragraph("\n\n Hello,"+
+					"\n\n Your flight has been booked."+
+					"\n Following are the details of your booking:"+
+					"\n\n\t\t\t\t Booking ID:  "+n+
+					"\n\t\t\t\t Passenger Name:  "+passName+
+					"\n\t\t\t\t Age:  "+passAge+
+					"\n\t\t\t\t Gender:  "+passGender+
+					"\n\n\n Your Flight Details:"));
+					
+
+					
+					document.add(new Paragraph("\n\t\t\t\t Flight ID:  "+FlightID+
+							"\n\t\t\t\t Plane Name:  "+planeNumber+
+							"\n\t\t\t\t Seat Type:  "+seatType+
+							"\n\t\t\t\t From:  "+launch+
+							"\n\t\t\t\t To:  "+destination+
+							"\n\t\t\t\t Depart Time:  "+departTime+
+							"\n\t\t\t\t Arrival Time:  "+arriveTime+
+							"\n\n\n Total number of tickets:  "+num+
+							"\n Price per ticket:  "+cost1));
+					
+					
+
+					document.close();
+					file.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
+				}
+
+				ResultSet rs = st.executeQuery("select distinct(email) from memberss where uname = '"+user+"'");
+				if(rs.next()){
+				String email = rs.getString("email");
+				Properties props = new Properties();
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class",
+						"javax.net.ssl.SSLSocketFactory");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.port", "465");
+
+				Session session1 = Session.getInstance(props,
+					new javax.mail.Authenticator() {
+						protected PasswordAuthentication getPasswordAuthentication() {
+							return new PasswordAuthentication("flyroyalairlines","fundamentals");
+						}
+					});
+
+				try {
+
+					BodyPart messageBodyPart = new MimeBodyPart();
+					Multipart multipart = new MimeMultipart();
+					Message message = new MimeMessage(session1);
+					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
+					message.setRecipients(Message.RecipientType.TO,
+							InternetAddress.parse("aman-gupta@uiowa.edu"));
+					message.setSubject("Congrats!! Your tickets have been booked successfully");
+					 messageBodyPart = new MimeBodyPart();
+					 message.setText("Dear Customer," +
+								"\n\n You ticket has been booked." +
+								"\n Please find attached the pdf." +
+								"\n\n Warm Regards," +
+								"\n Fly Royal Airlines");
+				     String filename = "Booking"+n+".pdf";
+				     DataSource source = new FileDataSource(filename);
+				     messageBodyPart.setDataHandler(new DataHandler(source));
+				     messageBodyPart.setFileName(filename);
+				     multipart.addBodyPart(messageBodyPart);
+				     message.setContent(multipart );
+
+					Transport.send(message);
+
+					System.out.println("Done");
+
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+				}		
+						
 			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 				rcheck=false;
 				System.out.println("Entered catch block");
@@ -171,6 +465,104 @@
 				System.out.println("Got to try block1");
 				int i = st.executeUpdate("insert into booking(bookingid,uname,FlightID,numTickets,seatType,passName,passAge,passGender) values ('"+n+"','"+user+"','"+rwflightid+"','"+num+"','"+rseatType+"','"+names[j]+"','"+age[j]+"','"+gender[j]+"')");
 				System.out.println("Got to try block2");
+				
+				ResultSet rs1 = st.executeQuery("select passName, passAge, passGender, bookingID, planeNumber, f.FlightID as FlightID, launch, destination, departure, arrive from booking b, flight f, plane p where bookingID = '"+n+"' and b.FlightID = f.FlightID and f.PlaneID = f.PlaneID;");
+				if(rs1.next()){			
+				String passName = rs1.getString("passName");
+				String passAge = rs1.getString("passAge");
+				String passGender = rs1.getString("passGender");			
+				String bookingID = rs1.getString("bookingID");
+				String planeNumber = rs1.getString("planeNumber");
+				String FlightID = rs1.getString("FlightID");
+
+				try {
+					OutputStream file = new FileOutputStream(new File("Booking"+n+".pdf"));
+
+					Document document = new Document();
+					PdfWriter.getInstance(document, file);
+
+					document.open();
+					document.add(new Paragraph("\n\n Hello,"+
+					"\n\n Your flight has been booked."+
+					"\n Following are the details of your booking:"+
+					"\n\n\t\t\t\t Booking ID:  "+n+
+					"\n\t\t\t\t Passenger Name:  "+passName+
+					"\n\t\t\t\t Age:  "+passAge+
+					"\n\t\t\t\t Gender:  "+passGender+
+					"\n\n\n Your Flight Details:"));
+					
+
+					
+					document.add(new Paragraph("\n\t\t\t\t Flight ID:  "+FlightID+
+							"\n\t\t\t\t Plane Name:  "+planeNumber+
+							"\n\t\t\t\t Seat Type:  "+seatType+
+							"\n\t\t\t\t From:  "+launch+
+							"\n\t\t\t\t To:  "+destination+
+							"\n\t\t\t\t Depart Time:  "+departTime+
+							"\n\t\t\t\t Arrival Time:  "+arriveTime+
+							"\n\n\n Total number of tickets:  "+num+
+							"\n Price per ticket:  "+cost1));
+					
+					
+
+					document.close();
+					file.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
+				}
+
+				ResultSet rs = st.executeQuery("select distinct(email) from memberss where uname = '"+user+"'");
+				if(rs.next()){
+				String email = rs.getString("email");
+				Properties props = new Properties();
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class",
+						"javax.net.ssl.SSLSocketFactory");
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.port", "465");
+
+				Session session1 = Session.getInstance(props,
+					new javax.mail.Authenticator() {
+						protected PasswordAuthentication getPasswordAuthentication() {
+							return new PasswordAuthentication("flyroyalairlines","fundamentals");
+						}
+					});
+
+				try {
+
+					BodyPart messageBodyPart = new MimeBodyPart();
+					Multipart multipart = new MimeMultipart();
+					Message message = new MimeMessage(session1);
+					message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
+					message.setRecipients(Message.RecipientType.TO,
+							InternetAddress.parse("aman-gupta@uiowa.edu"));
+					message.setSubject("Congrats!! Your tickets have been booked successfully");
+					 messageBodyPart = new MimeBodyPart();
+					 message.setText("Dear Customer," +
+								"\n\n You ticket has been booked." +
+								"\n Please find attached the pdf." +
+								"\n\n Warm Regards," +
+								"\n Fly Royal Airlines");
+				     String filename = "Booking"+n+".pdf";
+				     DataSource source = new FileDataSource(filename);
+				     messageBodyPart.setDataHandler(new DataHandler(source));
+				     messageBodyPart.setFileName(filename);
+				     multipart.addBodyPart(messageBodyPart);
+				     message.setContent(multipart );
+
+					Transport.send(message);
+
+					System.out.println("Done");
+
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+				}
+						
 			} catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 				rwcheck=false;
 				System.out.println("Entered catch block");
@@ -180,102 +572,7 @@
 	}
 	
 
-	ResultSet rs1 = st.executeQuery("select passName, passAge, passGender, bookingID, planeNumber, f.FlightID as FlightID, launch, destination, departure, arrive from booking b, flight f, plane p where bookingID = '"+n+"' and b.FlightID = f.FlightID and f.PlaneID = f.PlaneID;");
-	if(rs1.next()){			
-	String passName = rs1.getString("passName");
-	String passAge = rs1.getString("passAge");
-	String passGender = rs1.getString("passGender");			
-	String bookingID = rs1.getString("bookingID");
-	String planeNumber = rs1.getString("planeNumber");
-	String FlightID = rs1.getString("FlightID");
-
-	try {
-		OutputStream file = new FileOutputStream(new File("Booking"+n+".pdf"));
-
-		Document document = new Document();
-		PdfWriter.getInstance(document, file);
-
-		document.open();
-		document.add(new Paragraph("\n\n Hello,"+
-		"\n\n Your flight has been booked."+
-		"\n Following are the details of your booking:"+
-		"\n\n\t\t\t\t Booking ID:  "+n+
-		"\n\t\t\t\t Passenger Name:  "+passName+
-		"\n\t\t\t\t Age:  "+passAge+
-		"\n\t\t\t\t Gender:  "+passGender+
-		"\n\n\n Your Flight Details:"));
-		
-
-		
-		document.add(new Paragraph("\n\t\t\t\t Flight ID:  "+FlightID+
-				"\n\t\t\t\t Plane Name:  "+planeNumber+
-				"\n\t\t\t\t Seat Type:  "+seatType+
-				"\n\t\t\t\t From:  "+launch+
-				"\n\t\t\t\t To:  "+destination+
-				"\n\t\t\t\t Depart Time:  "+departTime+
-				"\n\t\t\t\t Arrival Time:  "+arriveTime+
-				"\n\n\n Total number of tickets:  "+num+
-				"\n Price per ticket:  "+cost1));
-		
-		
-
-		document.close();
-		file.close();
-
-	} catch (Exception e) {
-
-		e.printStackTrace();
-	}
-	}
-
-	ResultSet rs = st.executeQuery("select distinct(email) from memberss where uname = '"+user+"'");
-	if(rs.next()){
-	String email = rs.getString("email");
-	Properties props = new Properties();
-	props.put("mail.smtp.host", "smtp.gmail.com");
-	props.put("mail.smtp.socketFactory.port", "465");
-	props.put("mail.smtp.socketFactory.class",
-			"javax.net.ssl.SSLSocketFactory");
-	props.put("mail.smtp.auth", "true");
-	props.put("mail.smtp.port", "465");
-
-	Session session1 = Session.getInstance(props,
-		new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("flyroyalairlines","fundamentals");
-			}
-		});
-
-	try {
-
-		BodyPart messageBodyPart = new MimeBodyPart();
-		Multipart multipart = new MimeMultipart();
-		Message message = new MimeMessage(session1);
-		message.setFrom(new InternetAddress("flyroyalairlines@gmail.com"));
-		message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse(email));
-		message.setSubject("Congrats!! Your tickets have been booked successfully");
-		 messageBodyPart = new MimeBodyPart();
-		 message.setText("Dear Customer," +
-					"\n\n You ticket has been booked." +
-					"\n Please find attached the pdf." +
-					"\n\n Warm Regards," +
-					"\n Fly Royal Airlines");
-	     String filename = "Booking"+n+".pdf";
-	     DataSource source = new FileDataSource(filename);
-	     messageBodyPart.setDataHandler(new DataHandler(source));
-	     messageBodyPart.setFileName(filename);
-	     multipart.addBodyPart(messageBodyPart);
-	     message.setContent(multipart );
-
-		Transport.send(message);
-
-		System.out.println("Done");
-
-	} catch (MessagingException e) {
-		throw new RuntimeException(e);
-	}
-	}
+	
 	
 	if(!rflightid.equals("null")){
 		if(check && rcheck){
