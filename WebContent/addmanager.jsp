@@ -14,18 +14,49 @@
 <%@page import="javax.mail.internet.MimeMessage"%>                                                                                          
 <%@page import="javax.mail.internet.InternetAddress"%>                                                                                      
 <%@page import="javax.mail.Transport"%>
+<%@page import="java.security.spec.KeySpec"%>
+<%@page import="javax.crypto.Cipher"%>
+<%@page import="javax.crypto.SecretKey"%>
+<%@page import="javax.crypto.SecretKeyFactory"%>
+<%@page import="javax.crypto.spec.DESedeKeySpec"%>
+<%@page import="org.apache.commons.codec.binary.Base64"%>
 <%
     String user = request.getParameter("uname");    
     String pwd = request.getParameter("pass");
     String fname = request.getParameter("fname");
     String lname = request.getParameter("lname");
     String email = request.getParameter("email");
+    
+    String UNICODE_FORMAT = "UTF8";
+    String DESEDE_ENCRYPTION_SCHEME = "DESede";
+    KeySpec ks;
+    SecretKeyFactory skf;
+    Cipher cipher;
+    byte[] arrayBytes;
+    String myEncryptionKey;
+    String myEncryptionScheme;
+    SecretKey key;
+    
+    myEncryptionKey = "ThisIsSpartaThisIsSparta";
+    myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
+    arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
+    ks = new DESedeKeySpec(arrayBytes);
+    skf = SecretKeyFactory.getInstance(myEncryptionScheme);
+    cipher = Cipher.getInstance(myEncryptionScheme);
+    key = skf.generateSecret(ks);
+    
+    String encryptedString = null;
+    cipher.init(Cipher.ENCRYPT_MODE, key);
+    byte[] plainText = pwd.getBytes(UNICODE_FORMAT);
+    byte[] encryptedText = cipher.doFinal(plainText);
+    encryptedString = new String(Base64.encodeBase64(encryptedText));
+    
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/form",
             "root", "root");
     Statement st = con.createStatement();
     //ResultSet rs;
-    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE(), 'M', 'YES')");
+    int i = st.executeUpdate("insert into memberss(first_name, last_name, email, uname, pass, regdate, accType, ftlogin) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + encryptedString + "', CURDATE(), 'M', 'YES')");
     if (i > 0) {
         
         response.sendRedirect("adminWelcome.html");
